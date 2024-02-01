@@ -36,6 +36,12 @@ export const validateRegisterInput = withValidationErrors([
         throw new BadRequestError("email already exists");
       }
     }),
+  body("phoneNumber").notEmpty().withMessage("phoneNumber is required"),
+  body("street").notEmpty().withMessage("street is required"),
+  body("postalCode").notEmpty().withMessage("postalCode is required"),
+  body("city").notEmpty().withMessage("city is required"),
+  body("state").notEmpty().withMessage("state is required"),
+  body("country").notEmpty().withMessage("country is required"),
   body("password")
     .notEmpty()
     .withMessage("password is required")
@@ -64,7 +70,12 @@ export const validateUpdateUserInput = withValidationErrors([
       if (user && user._id.toString() !== req.user.userId) {
         throw new BadRequestError("email already exists");
       }
-    }),
+    }),body("phoneNumber").notEmpty().withMessage("phoneNumber is required"),
+  body("street").notEmpty().withMessage("street is required"),
+  body("postalCode").notEmpty().withMessage("postalCode is required"),
+  body("city").notEmpty().withMessage("city is required"),
+  body("state").notEmpty().withMessage("state is required"),
+  body("country").notEmpty().withMessage("country is required"),
 ]);
 
 export const validateUpdatePasswordInput = withValidationErrors([

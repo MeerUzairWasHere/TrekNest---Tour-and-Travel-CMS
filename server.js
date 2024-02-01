@@ -56,9 +56,12 @@ cloudinary.config({
   api_secret: process.env.CLOUD_API_SECRET,
 });
 
+
+// public routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
 
+ 
 
 
 

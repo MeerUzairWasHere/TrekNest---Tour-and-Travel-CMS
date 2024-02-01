@@ -4,10 +4,15 @@ const UserSchema = new mongoose.Schema({
   name: {
     type: String,
   },
-
   email: String,
+  phoneNumber:String,
+  street: String,
+  postalCode: String,
+  city: String,
+  state: String,
+  country: String
+,
   password: String,
-
   role: {
     type: String,
     enum: ["user", "admin"],
@@ -27,12 +32,15 @@ const UserSchema = new mongoose.Schema({
   passwordTokenExpirationDate: {
     type: Date,
   },
-});
+
+} );
+
+ 
 
 UserSchema.methods.toJSON = function () {
   let obj = this.toObject();
   delete obj.password;
   return obj;
 };
-
+ 
 export default mongoose.model("User", UserSchema);

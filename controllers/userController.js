@@ -14,12 +14,23 @@ export const showCurrentUser = async (req, res) => {
 
 // update user with user.save()
 export const updateUser = async (req, res) => {
-  const { email, name } = req.body;
+  const { email, name,phoneNumber,
+    street,
+    postalCode,
+    city,
+    state,
+    country } = req.body;
 
   const user = await User.findOne({ _id: req.user.userId });
 
   user.email = email;
   user.name = name;
+    user.phoneNumber = phoneNumber,
+    user.street = street,
+    user.postalCode = postalCode,
+    user.city = city,
+    user.state = state,
+    user.country = country
 
   await user.save();
 
@@ -44,3 +55,16 @@ export const updateUserPassword = async (req, res) => {
   await user.save();
   res.status(StatusCodes.OK).json({ msg: "Success! Password Updated." });
 };
+
+export const getAllUsers = async (req,res)=>{
+  const users = await User.find({ role: "user" }).select("name email phoneNumber street postalCode city state country ") 
+  res.status(StatusCodes.OK).json({ users });
+}
+export const getSingleUserDetail = async (req,res)=>{
+  const user = await User.findOne({ role: "user",_id:req.params.id });
+  res.status(StatusCodes.OK).json({ user });
+}
+export const deleteUser = async (req,res)=>{
+   await User.findOneAndDelete({ role: "user",_id:req.params.id });
+  res.status(StatusCodes.OK).json({ msg:`user deleted successfully!` });
+}

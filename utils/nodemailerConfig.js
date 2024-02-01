@@ -1,10 +1,10 @@
 const config = {
-  host: "smtp.ethereal.email",
+  host: 'smtp.ethereal.email',
   port: 587,
   auth: {
-    user: "marlon.kiehn@ethereal.email",
-    pass: "AHkpwUXTjnzYV4jjdw",
-  },
+      user: 'nya64@ethereal.email',
+      pass: 'veDzJ6FabD1MmKmFxg'
+  }
 };
 
 export default config;

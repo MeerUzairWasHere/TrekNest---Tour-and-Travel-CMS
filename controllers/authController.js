@@ -17,7 +17,7 @@ import {
 import { comparePassword, hashPassword } from "../utils/passwordUtils.js";
 
 export const register = async (req, res) => {
-  const { email, name } = req.body;
+  const { email, name,phoneNumber,street,postalCode,city,state,country} = req.body;
 
   // first registered user is an admin
   const isFirstAccount = (await User.countDocuments()) === 0;
@@ -33,6 +33,13 @@ export const register = async (req, res) => {
     password: hashedPassword,
     role,
     verificationToken,
+    phoneNumber,
+    street,
+    postalCode,
+    city,
+    state,
+    country
+    
   });
 
   const origin = "http://localhost:5000";
