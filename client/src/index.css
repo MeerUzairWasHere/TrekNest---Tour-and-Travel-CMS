@@ -1,0 +1,245 @@
+/* ============= GLOBAL CSS =============== */
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+} /*16px*/
+
+:root {
+  --small-text: 0.875rem;
+  --extra-small-text: 0.7em;
+  /* rest of the vars */
+
+  --border-radius: 0.25rem;
+  --letter-spacing: 1px;
+  --transition: 0.3s ease-in-out all;
+  --max-width: 1520px;
+  --fixed-width: 600px;
+  --fluid-width: 95vw;
+  --nav-height: 6rem;
+  
+ 
+/* 
+  --background-color: var(--grey-50);
+  --background-secondary-color: var(--white); */
+
+  /* new */
+  --font-rubik: "Rubik", sans-serif;
+    --font-jost: "Jost", sans-serif;
+    --font-satisfy: "Satisfy", sans-serif;
+    --font-sansita: "Sansita", sans-serif;
+    --white-color: #fff;
+    --black-color: #000;
+    --title-color: #100C08;
+    --text-color: #787878;
+    --primary-color1: #63AB45;
+    --primary-color1-opc: 99, 171, 69;
+    --primary-color2: #FBB03B;
+    --primary-color2-opc: 251, 176, 59
+}
+  
+
+
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+  font-family:var(--font-rubik),system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  line-height: 1;
+}
+p {
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: capitalize;
+  letter-spacing: var(--letter-spacing);
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 5rem); /* Large heading */
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 3rem); /* Medium heading */
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 2.5rem); /* Small heading */
+}
+
+h4 {
+  font-size: clamp(1rem, 2vw, 2rem); /* Extra small heading */
+}
+
+h5 {
+  font-size: clamp(0.875rem, 1.5vw, 1.5rem); /* Tiny heading */
+}
+
+ 
+
+.text {
+  margin-bottom: 1.5rem;
+  max-width: 40em;
+}
+
+small,
+.text-small {
+  font-size: var(--small-text);
+}
+
+a {
+  text-decoration: none;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+
+.slider-container {
+  width: var(--fluid-width);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.container {
+  width: var(--fluid-width);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+
+
+/* buttons */
+.primary-button{
+    border-radius: 5px;
+    font-family: var(--font-rubik);
+    font-weight: 600;
+    font-size: 16px;
+  display: inline-block;
+  color: var(--white-color);
+    border: none;
+    padding: 16px 34px;
+    position: relative;
+    text-decoration: none;
+    overflow: hidden;
+    transition: all 1.5s ease;
+}
+.primary-button::before{
+  position: absolute;
+content: "";
+top: 50%;
+left: 50%;
+transform: translate(-50% ,-50%) rotate(45deg);
+background-color: var(--primary-color2);
+height: 0;
+width: 100%;
+transition: all .8s;
+z-index: -1;
+}
+.primary-button::after{
+  position: absolute;
+content: "";
+top: 50%;
+left: 50%;
+transform: translate(-50% ,-50%);
+background-color: var(--primary-color1);
+height: 100%;
+width: 100%;
+transition: all 1s;
+z-index: -1;
+}
+.primary-button:hover{
+  color: var(--black-color);
+}
+.primary-button:hover::before{
+height: 400%;
+
+}
+.primary-button:hover::after{
+background-color: transparent;
+}
+
+/* ------------------active------------- */
+ .active {
+    color: var(--primary-color1) !important;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .container {
+      padding: 0 1rem;
+    }
+  }
+.card {
+  width: 100%;
+  background-color: #f8f8f8; /* Warna card */
+  padding: 20px;
+  border-radius: 12px; /* Border radius card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+ form {
+  display: grid;
+  grid-template-columns:1fr 1fr ;
+  gap: 1rem;
+}
+@media only screen and (max-width: 768px) {
+  form{
+  grid-template-columns:1fr;
+
+  }
+}
+input {
+  padding: 10px;
+  border: 2px solid #ddd; /* Border color input */
+  border-radius: 8px; /* Border radius input */
+  transition: border-color 0.3s ease-in-out;
+  outline: none;
+  color: #333;
+  background-color: #f4f4f4; /* Warna input */
+}
+
+input:focus {
+  border-color: #ff9900; /* Warna input saat focus */
+}
+
+button {
+  background-color: #ff9900; /* Warna button */
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 8px; /* Border radius button */
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #ff6600; /* Warna button saat hover */
+}

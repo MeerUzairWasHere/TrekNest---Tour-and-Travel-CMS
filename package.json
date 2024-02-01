@@ -4,9 +4,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "setup-project": "npm i",
-    "dev": "nodemon server"
+   "scripts": {
+    "setup-project": "npm i && cd client && npm i",
+    "server": "nodemon server",
+    "client": "cd client && npm run dev",
+    "dev": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\"",
+    "setup-production-app": "npm i && cd client && npm i && npm run build"
   },
   "keywords": [],
   "author": "",
