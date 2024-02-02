@@ -8,13 +8,21 @@ import RegisterPage from "./pages/RegisterPage";
 import MyBookingPage from "./pages/MyBookingPage";
 import { AdminDashboardLayoutPage,AdminDashboardPage,ManageBookingsPage,ManagePackagesPage,ManageUsersPage } from "./pages/CMS";
  
+//cms loaders
+import { loader as ManageUsersLoader } from "./pages/CMS/ManageUsersPage";
+
+// cms action
+import { action as DeleteUserAction } from "./pages/CMS/DeleteUserPage";
+
 
 //loaders
 import { loader as LayoutLoader } from "./pages/Layout";
 
+
+
 //actions
-import { action as LoginAction } from "./pages/LoginPage";
 import { action as LogoutAction } from "./pages/Logout";
+import { action as LoginAction } from "./pages/LoginPage";
 import { action as RegisterAction } from "./pages/RegisterPage";
 
 
@@ -50,7 +58,12 @@ const router = createBrowserRouter([
       },
         {
         path:"/admin-dashboard/manage-users",
-        element:<ManageUsersPage />
+        element:<ManageUsersPage />,
+        loader:ManageUsersLoader
+      },
+      {
+        path:"/admin-dashboard/delete-user/:id",
+        action: DeleteUserAction
       },
         {
         path:"/admin-dashboard/manage-bookings",
