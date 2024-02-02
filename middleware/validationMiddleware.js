@@ -1,7 +1,9 @@
-import { body, validationResult } from "express-validator";
-import { BadRequestError, UnauthorizedError } from "../errors/customErrors.js";
+import {body, param, validationResult } from "express-validator";
+import { BadRequestError, NotFoundError, UnauthorizedError } from "../errors/customErrors.js";
 
 import User from "../models/User.js";
+import mongoose from "mongoose";
+import Package from "../models/Package.js";
 
 const withValidationErrors = (validateValues) => {
   return [
@@ -116,4 +118,24 @@ export const validateResetPasswordInput = withValidationErrors([
     .withMessage("email is required")
     .isEmail()
     .withMessage("invalid email format"),
+]);
+ 
+export const validatePackagesInput = withValidationErrors([
+  body('tourName').notEmpty().withMessage("tourName is required"),
+  body('locationName').notEmpty().withMessage("locationName is required"),
+  body('packageTitle').notEmpty().withMessage("packageTitle is required"),
+  body('days').notEmpty().withMessage("days is required"),
+  body('nights').notEmpty().withMessage("nights is required"),
+  body('startingPrice').notEmpty().withMessage("startingPrice is required"),
+  body('mrpPrice').notEmpty().withMessage("mrpPrice is required")]);
+
+  export const validateIdParamForPackages = withValidationErrors([
+  param("id").custom(async (value) => {
+
+    const isValidMongoId = mongoose.Types.ObjectId.isValid(value);
+    if (!isValidMongoId) throw new BadRequestError("invalid MongoDB id");
+
+    const currentPackage = await Package.findById(value);
+    if (!currentPackage ) throw new NotFoundError(`No package with id ${value}`);
+  }),
 ]);

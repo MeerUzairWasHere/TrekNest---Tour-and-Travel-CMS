@@ -23,6 +23,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 //  routers
 import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoutes.js";
+import packageRouter from "./routes/packageRoutes.js";
 
 
 //connect db
@@ -60,6 +61,7 @@ cloudinary.config({
 // public routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/packages", packageRouter);
 
  
 
