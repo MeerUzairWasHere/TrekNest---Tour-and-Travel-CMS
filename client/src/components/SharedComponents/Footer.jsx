@@ -165,6 +165,10 @@ padding: .5rem 1rem;
     padding: 1rem;
     
   }
+  .reset-css{
+    display: none;
+  }
+  
   @media only screen and (max-width: 768px) {
    .container {
       display: none;

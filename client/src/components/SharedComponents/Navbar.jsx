@@ -212,7 +212,6 @@ padding: .5rem 1rem;
     a {
       color: var(--black-color);
       display: block;
-      margin-bottom: 1.1rem;
       font-size: 1rem;
     }
     svg {

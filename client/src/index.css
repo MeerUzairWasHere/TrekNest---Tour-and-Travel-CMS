@@ -205,16 +205,16 @@ h2 {
   margin-bottom: 2rem;
 }
 
- form {
+ .form {
   display: grid;
   grid-template-columns:1fr 1fr ;
   gap: 1rem;
 }
 @media only screen and (max-width: 768px) {
-  form{
+  .form{
   grid-template-columns:1fr;
-
   }
+  
 }
 input {
   padding: 10px;
@@ -230,7 +230,7 @@ input:focus {
   border-color: #ff9900; /* Warna input saat focus */
 }
 
-button {
+.form-button {
   background-color: #ff9900; /* Warna button */
   color: #fff;
   padding: 10px;
@@ -240,6 +240,6 @@ button {
   transition: background-color 0.3s ease-in-out;
 }
 
-button:hover {
+.form-button:hover {
   background-color: #ff6600; /* Warna button saat hover */
 }

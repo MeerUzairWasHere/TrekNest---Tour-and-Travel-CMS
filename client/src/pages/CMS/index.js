@@ -1,0 +1,5 @@
+export { default as AdminDashboardLayoutPage } from "./AdminDashboardLayoutPage"
+export { default as ManageBookingsPage } from "./ManageBookingsPage"
+export { default as ManagePackagesPage } from "./ManagePackagesPage"
+export { default as ManageUsersPage } from "./ManageUsersPage"
+export { default as AdminDashboardPage } from "./AdminDashboardPage"

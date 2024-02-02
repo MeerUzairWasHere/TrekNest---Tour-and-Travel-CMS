@@ -6,7 +6,8 @@ import Layout from "./pages/Layout";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import MyBookingPage from "./pages/MyBookingPage";
-import AdminDashboardPage from "./pages/AdminDashboardPage";
+import { AdminDashboardLayoutPage,AdminDashboardPage,ManageBookingsPage,ManagePackagesPage,ManageUsersPage } from "./pages/CMS";
+ 
 
 //loaders
 import { loader as LayoutLoader } from "./pages/Layout";
@@ -37,11 +38,31 @@ const router = createBrowserRouter([
     },{
       path:"/bookings",
       element:<MyBookingPage/>
-    },{
-      path:"/admin-dashboard",
-      element:<AdminDashboardPage/>
     }, 
-    { path: "/logout", action: LogoutAction },  ]
+    { path: "/logout", action: LogoutAction },
+  {
+      path:"/admin-dashboard",
+      element:<AdminDashboardLayoutPage />,
+      children:[
+        {
+        index:true,
+        element:<AdminDashboardPage />
+      },
+        {
+        path:"/admin-dashboard/manage-users",
+        element:<ManageUsersPage />
+      },
+        {
+        path:"/admin-dashboard/manage-bookings",
+        element:<ManageBookingsPage />
+      },
+        {
+        path:"/admin-dashboard/manage-packages",
+        element:<ManagePackagesPage />
+      },
+    
+    ]
+    },  ]
 
   },
 

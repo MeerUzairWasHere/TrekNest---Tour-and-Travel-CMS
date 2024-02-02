@@ -5,6 +5,7 @@ const SubmitButton = ({ formBtn,text,loadingText }) => {
   return (
     <button
       type='submit'
+      className='form-button'
       disabled={isSubmitting}
     >
       {isSubmitting ? loadingText : text}

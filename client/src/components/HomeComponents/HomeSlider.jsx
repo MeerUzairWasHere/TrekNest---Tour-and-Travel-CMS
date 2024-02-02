@@ -47,7 +47,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
-import 'animate.css';
+ 
 
 // import required modules
 import styled from 'styled-components';
@@ -80,16 +80,12 @@ const HomeSlider = () => {
       return   <SwiperSlide key={obj.title} className='home-slider'>
       <img  className="img" src={obj.imageUrl} />
       <div className="home-slider-content">
-        {/* <div className="location-banner animate__animated  animate__zoomIn">
-          <img src={banner} className="img" alt="banner-img" />
-          <span><MapPin size={20} color="white" />{obj.location}</span>
-
-        </div> */}
+      
         <YellowBatch text={obj.location}  icon={<MapPin/>} />
-        <h1 className="animate__animated animate__fadeInDown">{obj.title}</h1>
-        <p className="animate__animated animate__fadeInUp">{obj.subtitle}</p>
+        <h1>{obj.title}</h1>
+        <p>{obj.subtitle}</p>
 
-<Link className="animate__animated animate__fadeInUp primary-button" to="/packages">Book A Trip</Link>
+<Link className="primary-button" to="/packages">Book A Trip</Link>
 
       </div>
     </SwiperSlide>
