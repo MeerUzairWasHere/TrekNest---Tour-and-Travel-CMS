@@ -16,7 +16,7 @@ import { addNewPackage,
 getAllPackages,
 getSinglePackage,
 updatePackage,
-deletePackage } from '../controllers/packagesController.js'
+deletePackage } from '../controllers/packageController.js'
 
 // Routes for /admin
 router.route("/admin")
