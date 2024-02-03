@@ -10,9 +10,14 @@ import { AdminDashboardLayoutPage,AdminDashboardPage,ManageBookingsPage,ManagePa
  
 //cms loaders
 import { loader as ManageUsersLoader } from "./pages/CMS/ManageUsersPage";
+import { loader as ShowAllPackagesLoader } from "./pages/CMS/ShowAllPackagesPage";
+import { loader as EditPackageLoader } from "./pages/CMS/EditPackagePage";
 
 // cms action
 import { action as DeleteUserAction } from "./pages/CMS/DeleteUserPage";
+import { action as DeletePackageAction } from "./pages/CMS/DeletePackagePage";
+import { action as AddNewPackageAction } from "./pages/CMS/AddNewPackagePage";
+import { action as EditPackageAction } from "./pages/CMS/EditPackagePage";
 
 
 //loaders
@@ -24,6 +29,9 @@ import { loader as LayoutLoader } from "./pages/Layout";
 import { action as LogoutAction } from "./pages/Logout";
 import { action as LoginAction } from "./pages/LoginPage";
 import { action as RegisterAction } from "./pages/RegisterPage";
+import ShowAllPackagesPage from "./pages/CMS/ShowAllPackagesPage";
+import AddNewPackagePage from "./pages/CMS/AddNewPackagePage";
+import EditPackagePage from "./pages/CMS/EditPackagePage";
 
 
 
@@ -67,11 +75,27 @@ const router = createBrowserRouter([
       },
         {
         path:"/admin-dashboard/manage-bookings",
-        element:<ManageBookingsPage />
-      },
+        element:<ManageBookingsPage />,      },
         {
         path:"/admin-dashboard/manage-packages",
-        element:<ManagePackagesPage />
+        element:<ManagePackagesPage />,
+         children:[{
+          index:true,
+          element: <ShowAllPackagesPage />,
+          loader:ShowAllPackagesLoader
+        },{
+          path:"/admin-dashboard/manage-packages/add",
+          element: <AddNewPackagePage />,
+          action:AddNewPackageAction
+        },{
+          path:"/admin-dashboard/manage-packages/edit/:id",
+          element: <EditPackagePage />,
+          loader:EditPackageLoader,
+          action:EditPackageAction,
+        },{
+          path:"/admin-dashboard/manage-packages/delete/:id",
+          action:DeletePackageAction
+        }]
       },
     
     ]

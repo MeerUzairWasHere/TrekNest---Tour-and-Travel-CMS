@@ -3,7 +3,8 @@ import Package from '../models/Package.js'
 import { formatImage } from "../middleware/multerMiddleware.js";
 import cloudinary from "cloudinary";
 import { BadRequestError } from "../errors/customErrors.js";
-//later
+
+
 export const addNewPackage = async (req,res)=>{
   // Check if files are included in the request
   if (req.file) {
@@ -38,7 +39,6 @@ const packageInfo = await Package.findOne({_id:id})
 res.status(StatusCodes.OK).json({ packageInfo });
 }
 
-//later
 export const updatePackage = async (req,res)=>{
 
 const currentPackage = await Package.findOne({ _id: req.params.id });

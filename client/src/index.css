@@ -134,6 +134,7 @@ ul {
 /* buttons */
 .primary-button{
     border-radius: 5px;
+    justify-content: center;
     font-family: var(--font-rubik);
     font-weight: 600;
     font-size: 16px;
