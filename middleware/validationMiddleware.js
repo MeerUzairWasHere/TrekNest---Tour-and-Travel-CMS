@@ -1,9 +1,11 @@
+import mongoose from "mongoose";
 import {body, param, validationResult } from "express-validator";
 import { BadRequestError, NotFoundError, UnauthorizedError } from "../errors/customErrors.js";
 
+//local imports
 import User from "../models/User.js";
-import mongoose from "mongoose";
 import Package from "../models/Package.js";
+import Booking from "../models/Booking.js  ";
 
 const withValidationErrors = (validateValues) => {
   return [
@@ -99,6 +101,7 @@ export const validateVerifyEmailInput = withValidationErrors([
     .isEmail()
     .withMessage("invalid email format"),
 ]);
+
 export const validateForgotPasswordInput = withValidationErrors([
   body("email")
     .notEmpty()
@@ -106,6 +109,7 @@ export const validateForgotPasswordInput = withValidationErrors([
     .isEmail()
     .withMessage("invalid email format"),
 ]);
+
 export const validateResetPasswordInput = withValidationErrors([
   body("token").notEmpty().withMessage("token is required"),
   body("newPassword")
@@ -127,9 +131,10 @@ export const validatePackagesInput = withValidationErrors([
   body('days').notEmpty().withMessage("days is required"),
   body('nights').notEmpty().withMessage("nights is required"),
   body('startingPrice').notEmpty().withMessage("startingPrice is required"),
-  body('mrpPrice').notEmpty().withMessage("mrpPrice is required")]);
+  body('mrpPrice').notEmpty().withMessage("mrpPrice is required")
+]);
 
-  export const validateIdParamForPackages = withValidationErrors([
+export const validateIdParamForPackages = withValidationErrors([
   param("id").custom(async (value) => {
 
     const isValidMongoId = mongoose.Types.ObjectId.isValid(value);
@@ -139,3 +144,13 @@ export const validatePackagesInput = withValidationErrors([
     if (!currentPackage ) throw new NotFoundError(`No package with id ${value}`);
   }),
 ]);
+
+export const validateBookingsInput = withValidationErrors([]);
+
+export const validateIdParamForBookings = withValidationErrors([
+  param("id").custom(async (value) => {
+  const isValidMongoId = mongoose.Types.ObjectId.isValid(value);
+  if (!isValidMongoId) throw new BadRequestError("invalid MongoDB id");
+  const currentBooking = await Booking.findById(value);
+  if (!currentBooking ) throw new NotFoundError(`No Booking with id ${value} found!`);
+})]);
