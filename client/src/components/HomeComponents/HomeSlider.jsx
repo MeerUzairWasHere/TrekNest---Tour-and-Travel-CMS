@@ -84,9 +84,6 @@ const HomeSlider = () => {
         <YellowBatch text={obj.location}  icon={<MapPin/>} />
         <h1>{obj.title}</h1>
         <p>{obj.subtitle}</p>
-
-<Link className="primary-button" to="/packages">Book A Trip</Link>
-
       </div>
     </SwiperSlide>
     })}

@@ -20,7 +20,7 @@ const ShowAllPackagesPage = () => {
     const {packages} = useLoaderData()
   return (
     <Wrapper>
-        <p>Total Users: <strong>{packages.length}</strong></p>
+        <p className="mx-1">Total Packages: <strong>{packages.length}</strong></p>
         <div className="packages-container">
             {
                 packages.map(({
@@ -51,7 +51,9 @@ const Wrapper = styled.div`
     grid-template-columns: repeat(3,1fr);
     gap: 1rem;
   }
-
+.mx-1{
+  margin-block: 1rem;
+}
 
 @media only screen and (max-width: 768px) {
   

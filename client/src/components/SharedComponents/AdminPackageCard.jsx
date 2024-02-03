@@ -45,7 +45,7 @@ pageUrl,_id
     <Link to={`/admin-dashboard/manage-packages/edit/${_id}`} className="primary-btn2">Edit
 </Link>
       <Form method="post" action={`/admin-dashboard/manage-packages/delete/${_id}`}>
-        <SubmitButton text="Delete" loadingText="Deleting..." />
+        <SubmitButton  text="Delete" loadingText="Deleting..." />
       </Form>
      
 </div>
@@ -59,9 +59,7 @@ pageUrl,_id
 export default PackageCard
 
 const PackageCardWrapper = styled.div`
-    .action-buttons button:last-child{
-background-color: red;
-    }
+     
     .action-buttons{
         height: 100%;
         display: flex;

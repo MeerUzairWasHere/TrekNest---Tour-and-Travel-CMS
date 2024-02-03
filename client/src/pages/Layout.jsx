@@ -2,7 +2,7 @@ import {
   Outlet,
   useLoaderData,
   useNavigation,
-  ScrollRestoration,
+  ScrollRestoration,Navigate
 } from "react-router-dom";
 import customFetch from "../utils/customFetch";
 import { createContext, useContext } from "react";
@@ -27,15 +27,15 @@ const Layout = () => {
 
   return (
     <myContext.Provider value={{ user }}>
-
         <Header/>
         <Navbar/>
         <main>
       {isPageLoading ? <h1>Loading...</h1> : <Outlet context={user} />}
+       {user ? null : <Navigate to="/" />}
+       
         </main>
         <Footer/>
       <ScrollRestoration />
-
     </myContext.Provider>
 
   )

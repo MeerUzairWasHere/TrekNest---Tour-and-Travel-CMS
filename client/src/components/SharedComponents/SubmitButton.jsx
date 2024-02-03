@@ -3,7 +3,7 @@ const SubmitButton = ({ formBtn,text,loadingText }) => {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
   return (
-    <button
+    <button 
       type='submit'
       className='form-button'
       disabled={isSubmitting}

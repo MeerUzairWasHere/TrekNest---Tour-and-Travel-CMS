@@ -1,11 +1,17 @@
 import {
+  Navigate,
   Outlet,
-  ScrollRestoration,
 } from "react-router-dom";
+import { useMyContext } from "../Layout";
 const AdminDashboardLayoutPage = () => {
+  const {user }= useMyContext()
   return (
     <>
-    <Outlet />
+      {user?.role === 'admin' ? (
+        <Outlet />
+      ) : (
+        <Navigate to={user ? '/' : '/login'} replace />
+      )}
     </>
   )
 }

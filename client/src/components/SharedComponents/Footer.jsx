@@ -98,7 +98,7 @@ const Wrapper = styled.footer`
   .social,
   .address {
     display: grid;
-    column-gap: 1.1rem;
+    gap: 1rem;
   }
   a,
   p {

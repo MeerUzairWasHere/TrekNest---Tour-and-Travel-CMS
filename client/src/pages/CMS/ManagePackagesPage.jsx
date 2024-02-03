@@ -1,7 +1,9 @@
-import {  NavLink, Outlet } from "react-router-dom"
+import {  NavLink, Outlet,Navigate} from "react-router-dom"
 import styled from "styled-components"
+ 
 
 const ManagePackagesPage = () => {
+  
   return (
     <Wrapper>
       <nav>

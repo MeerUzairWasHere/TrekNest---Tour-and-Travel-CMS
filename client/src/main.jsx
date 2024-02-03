@@ -8,6 +8,6 @@ import { ToastContainer } from "react-toastify";
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
     <App />
-    <ToastContainer position="bottom-right" theme="light" />
+    <ToastContainer position="bottom-right" stacked closeOnClick theme="light" />
   </>,
 )

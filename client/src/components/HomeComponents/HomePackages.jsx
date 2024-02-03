@@ -1,81 +1,32 @@
 import styled from "styled-components"
 import SanistaText from "../SharedComponents/SanistaText"
 import PackageCard from "../SharedComponents/PackageCard"
-import Srinagar from '../../assets/images/srinagar.jpg'
-import DalLake from '../../assets/images/dal-lake.jpg'
-import Gulmarg from '../../assets/images/gulmarg.jpg'
-import Sonamarg from '../../assets/images/sonamarg.jpg'
-import Pahalgam from '../../assets/images/pahalgam.jpg'
+import customFetch from "../../utils/customFetch"
+import { toast } from "react-toastify"
+import { useLoaderData } from "react-router-dom"
 
-
-const packages = [
-  {
-      tourName: "Kashmir Tour",
-      locationName: "Srinagar",
-      packageTitle: "Srinagar Serenity Escape",
-      days: "4",
-      nights: "3",
-      startingPrice: "8,499",
-      mrpPrice: "11,000",
-      imgUrl: Srinagar,
-      pageUrl:"/packages/srinagar"
-  },
-  {
-      tourName: "Kashmir Tour",
-      locationName: "Dal Lake",
-      packageTitle: "Dal Lake Tranquility",
-      days: "2",
-      nights: "1",
-      startingPrice: "4,999",
-      mrpPrice: "6,500",
-      imgUrl: DalLake,
-      pageUrl:"/packages/dal-lake"
-  },
-  {
-      tourName: "Kashmir Tour",
-      locationName: "Sonamarg",
-      packageTitle: "Sonamarg Mountain Expedition",
-      days: "5",
-      nights: "4",
-      startingPrice: "10,999",
-      mrpPrice: "13,500",
-      imgUrl: Sonamarg,
-      pageUrl:"/packages/sonamarg"
-  },
-  {
-      tourName: "Kashmir Tour",
-      locationName: "Pahalgam",
-      packageTitle: "Pahalgam Bliss Retreat",
-      days: "3",
-      nights: "4",
-      startingPrice: "7,999",
-      mrpPrice: "10,000",
-      imgUrl: Pahalgam,
-      pageUrl:"/packages/pahalgam"
-  },
-  {
-      tourName: "Kashmir Tour",
-      locationName: "Gulmarg",
-      packageTitle: "Gulmarg Alpine Adventure",
-      days: "4",
-      nights: "3",
-      startingPrice: "9,999",
-      mrpPrice: "12,000",
-      imgUrl: Gulmarg,
-      pageUrl:"/packages/gulmarg"
+export const loader = async () => {
+  try {
+    const { data } = await customFetch.get("/packages/admin");
+    return data
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    return error;
   }
-];
+}
+
 
 const HomePackages = () => {
+  const { packages } = useLoaderData()
   return (
     <HomePackagesWrapper>
-        <SanistaText text="Tour Package" />
-        <h2>Affordable Vacation Bundles</h2>
-        <div className="packages-container">
-      {packages.map((pack,index)=>{
-        return <PackageCard key={index} {...pack} />
-      })}
-        </div>    
+      <SanistaText text="Tour Package" />
+      <h2>Affordable Vacation Bundles</h2>
+      <div className="packages-container">
+        {packages.map((pack, index) => {
+          return <PackageCard key={index} {...pack} />
+        })}
+      </div>
 
     </HomePackagesWrapper>
   )
