@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 // Define schema for booking
 const bookingSchema = new mongoose.Schema({
+   bookingNumber: {
+    type: Number,
+    default:1,
+    unique: true
+  },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -38,6 +43,23 @@ const bookingSchema = new mongoose.Schema({
   timestamps: true
 }
 );
+
+bookingSchema.pre('save', async function(next) {
+  try {
+    // Find the latest booking in the database
+    const latestBooking = await this.constructor.findOne({}, {}, { sort: { 'createdAt': -1 } });
+    // If no booking found, set booking number to 1
+    if (!latestBooking) {
+      this.bookingNumber = 1;
+    } else {
+      // Increment the booking number by 1
+      this.bookingNumber = latestBooking.bookingNumber + 1;
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 
 // Create Booking model
 export default mongoose.model('Booking', bookingSchema);

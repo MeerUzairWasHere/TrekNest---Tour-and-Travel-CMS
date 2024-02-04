@@ -25,6 +25,7 @@ import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import packageRouter from "./routes/packageRoutes.js";
 import bookingRouter from "./routes/bookingRoutes.js";
+import dashboardRouter from "./routes/dashboardRoutes.js";
 
 
 //connect db
@@ -64,6 +65,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/packages", packageRouter);
 app.use("/api/v1/booking", bookingRouter);
+app.use("/api/v1/dashboard", dashboardRouter);
 
  
 

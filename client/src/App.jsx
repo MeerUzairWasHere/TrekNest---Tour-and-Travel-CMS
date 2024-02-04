@@ -6,12 +6,19 @@ import Layout from "./pages/Layout";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import MyBookingPage from "./pages/MyBookingPage";
+import ShowAllPackagesPage from "./pages/CMS/ShowAllPackagesPage";
+import AddNewPackagePage from "./pages/CMS/AddNewPackagePage";
+import EditPackagePage from "./pages/CMS/EditPackagePage";
+import ErrorPage from "./pages/ErrorPage";
+
 import { AdminDashboardLayoutPage, AdminDashboardPage, ManageBookingsPage, ManagePackagesPage, ManageUsersPage } from "./pages/CMS";
 
 //cms loaders
 import { loader as ManageUsersLoader } from "./pages/CMS/ManageUsersPage";
 import { loader as ShowAllPackagesLoader } from "./pages/CMS/ShowAllPackagesPage";
 import { loader as EditPackageLoader } from "./pages/CMS/EditPackagePage";
+import { loader as GetAllBookingsLoader } from "./pages/CMS/ManageBookingsPage";
+import { loader as AdminDashboardLoader } from "./pages/CMS/AdminDashboardPage";
 
 // cms action
 import { action as DeleteUserAction } from "./pages/CMS/DeleteUserPage";
@@ -23,6 +30,7 @@ import { action as EditPackageAction } from "./pages/CMS/EditPackagePage";
 //loaders
 import { loader as LayoutLoader } from "./pages/Layout";
 import { loader as PackagesLoader } from "./components/HomeComponents/HomePackages";
+import { loader as MyBookingsLoader } from "./pages/MyBookingPage";
 
 
 
@@ -30,9 +38,7 @@ import { loader as PackagesLoader } from "./components/HomeComponents/HomePackag
 import { action as LogoutAction } from "./pages/Logout";
 import { action as LoginAction } from "./pages/LoginPage";
 import { action as RegisterAction } from "./pages/RegisterPage";
-import ShowAllPackagesPage from "./pages/CMS/ShowAllPackagesPage";
-import AddNewPackagePage from "./pages/CMS/AddNewPackagePage";
-import EditPackagePage from "./pages/CMS/EditPackagePage";
+
 
 
 
@@ -41,6 +47,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     loader: LayoutLoader,
+    errorElement: <ErrorPage />,
     children: [{
       index: true,
       element: <Home />,
@@ -55,7 +62,9 @@ const router = createBrowserRouter([
       action: RegisterAction
     }, {
       path: "/bookings",
-      element: <MyBookingPage />
+      element: <MyBookingPage />,
+      errorElement: <ErrorPage />,
+      loader: MyBookingsLoader,
     },
     { path: "/logout", action: LogoutAction },
     {
@@ -64,7 +73,8 @@ const router = createBrowserRouter([
       children: [
         {
           index: true,
-          element: <AdminDashboardPage />
+          element: <AdminDashboardPage />,
+          loader: AdminDashboardLoader
         },
         {
           path: "/admin-dashboard/manage-users",
@@ -78,6 +88,7 @@ const router = createBrowserRouter([
         {
           path: "/admin-dashboard/manage-bookings",
           element: <ManageBookingsPage />,
+          loader: GetAllBookingsLoader
         },
         {
           path: "/admin-dashboard/manage-packages",

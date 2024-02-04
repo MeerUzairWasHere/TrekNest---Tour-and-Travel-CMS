@@ -6,16 +6,16 @@ const Navlinks = ({ toggle }) => {
   const { user } = useMyContext();
 
   // Filter links based on user's role and authentication status
-const filteredLinks = links.filter(link => {
-  if (!user) {
-    return link.text !== "Logout" && link.text !== "Admin Dashboard" && link.text !== "My Bookings" && link.text !== "Manage Users" && link.text !== "Manage Bookings" && link.text !== "Manage Packages";
-  } else if (user.role === "admin") {
-    return link.text !== "Login" && link.text !== "Register" && link.text !== "My Bookings";
-  } else if (user.role === "user") {
-    return link.text !== "Login" && link.text !== "Register" && link.text !== "Admin Dashboard" && link.text !== "Manage Users" && link.text !== "Manage Bookings" && link.text !== "Manage Packages";
-  }
-  return true;
-});
+  const filteredLinks = links.filter(link => {
+    if (!user) {
+      return link.text !== "Logout" && link.text !== "Admin Dashboard" && link.text !== "My Bookings" && link.text !== "Manage Users" && link.text !== "Manage Bookings" && link.text !== "Manage Packages";
+    } else if (user.role === "admin") {
+      return link.text !== "Login" && link.text !== "Register"
+    } else if (user.role === "user") {
+      return link.text !== "Login" && link.text !== "Register" && link.text !== "Admin Dashboard" && link.text !== "Manage Users" && link.text !== "Manage Bookings" && link.text !== "Manage Packages";
+    }
+    return true;
+  });
 
   return (
     <>

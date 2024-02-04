@@ -2,7 +2,7 @@ import {
   Outlet,
   useLoaderData,
   useNavigation,
-  ScrollRestoration,Navigate
+  ScrollRestoration, Navigate
 } from "react-router-dom";
 import customFetch from "../utils/customFetch";
 import { createContext, useContext } from "react";
@@ -19,7 +19,7 @@ export const loader = async () => {
   }
 };
 const Layout = () => {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
   const isPageLoading = navigation.state === "loading";
 
   const { user } = useLoaderData();
@@ -27,14 +27,14 @@ const Layout = () => {
 
   return (
     <myContext.Provider value={{ user }}>
-        <Header/>
-        <Navbar/>
-        <main>
-      {isPageLoading ? <h1>Loading...</h1> : <Outlet context={user} />}
-       {user ? null : <Navigate to="/" />}
-       
-        </main>
-        <Footer/>
+      <Header />
+      <Navbar />
+      <main>
+        {isPageLoading ? <h4 className="mx-1">Loading...</h4> : <Outlet context={user} />}
+        {user ? null : <Navigate to="/" />}
+
+      </main>
+      <Footer />
       <ScrollRestoration />
     </myContext.Provider>
 

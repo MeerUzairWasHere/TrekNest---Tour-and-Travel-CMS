@@ -146,9 +146,7 @@ export const validateIdParamForPackages = withValidationErrors([
 ]);
 
 export const validateBookingsInput = withValidationErrors([
-  body('userId')
-    .exists().withMessage('User ID is required')
-    .isMongoId().withMessage('Invalid user ID'),
+ 
 
   // Validate packageId
   body('packageId')
