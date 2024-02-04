@@ -145,7 +145,41 @@ export const validateIdParamForPackages = withValidationErrors([
   }),
 ]);
 
-export const validateBookingsInput = withValidationErrors([]);
+export const validateBookingsInput = withValidationErrors([
+  body('userId')
+    .exists().withMessage('User ID is required')
+    .isMongoId().withMessage('Invalid user ID'),
+
+  // Validate packageId
+  body('packageId')
+    .exists().withMessage('Package ID is required')
+    .isMongoId().withMessage('Invalid package ID'),
+
+  // Validate startDate
+  body('startDate')
+    .exists().withMessage('Start date is required')
+    .isISO8601().withMessage('Invalid start date'),
+
+  // Validate endDate
+  body('endDate')
+    .exists().withMessage('End date is required')
+    .isISO8601().withMessage('Invalid end date'),
+
+  // Validate numberOfPersons
+  body('numberOfPersons')
+    .exists().withMessage('Number of persons is required')
+    .isInt({ min: 1 }).withMessage('Number of persons must be a positive integer'),
+
+  // Validate bookingStatus
+  body('bookingStatus')
+    .optional()
+    .isIn(['pending', 'confirmed', 'canceled']).withMessage('Invalid booking status'),
+
+  // Validate totalPrice
+  body('totalPrice')
+    .exists().withMessage('Total price is required')
+    .isNumeric().withMessage('Total price must be a number'),
+]);
 
 export const validateIdParamForBookings = withValidationErrors([
   param("id").custom(async (value) => {
@@ -154,3 +188,13 @@ export const validateIdParamForBookings = withValidationErrors([
   const currentBooking = await Booking.findById(value);
   if (!currentBooking ) throw new NotFoundError(`No Booking with id ${value} found!`);
 })]);
+
+/*
+userId
+packageId
+startDate
+endDate
+numberOfPersons
+totalPrice
+
+*/
