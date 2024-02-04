@@ -15,6 +15,7 @@ import {
 import { 
 createBooking,
 getAllBookings,
+getAllBookingsForAdmin,
 getSingleBooking,
 updateBooking,
 deleteBooking } from '../controllers/bookingController.js'
@@ -24,9 +25,12 @@ router.route("/admin")
   .get(authenticateUser,getAllBookings)
   .post(authenticateUser,validateBookingsInput, createBooking);
 
+router.route("/adminOnly").get(authenticateUser,authorizePermissions("admin"),getAllBookingsForAdmin)
+
+
 // Routes for /admin/:id
 router.route("/admin/:id")
-  .get(authenticateUser , validateIdParamForBookings,getSingleBooking)
+  .get(authenticateUser , authorizePermissions("admin"),validateIdParamForBookings,getSingleBooking)
   .patch(authenticateUser, authorizePermissions("admin"),validateIdParamForBookings, validateBookingsInput, updateBooking)
   .delete(authenticateUser, authorizePermissions("admin"),validateIdParamForBookings,deleteBooking);
 
