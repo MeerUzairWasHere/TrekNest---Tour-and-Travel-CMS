@@ -6,6 +6,36 @@ import { BadRequestError } from "../errors/customErrors.js";
 
 
 export const addNewPackage = async (req,res)=>{
+  // Destructure the fields from req.body
+const { days, nights, startingPrice, mrpPrice ,includedFeatures,excludedFeatures,tags} = req.body;
+
+const includedFeaturesInArray = await includedFeatures.split(",").map(item => item.trim());
+req.body.includedFeatures = includedFeaturesInArray;
+
+const excludedFeaturesInArray = await excludedFeatures.split(",").map(item => item.trim());
+req.body.excludedFeatures = excludedFeaturesInArray;
+
+const tagsInArray = await tags.split(",").map(tag => tag.trim());
+req.body.tags = tagsInArray;
+
+  
+// Parse and convert the fields to numbers
+const parsedDays = parseInt(days);
+const parsedNights = parseInt(nights);
+const parsedStartingPrice = parseFloat(startingPrice);
+const parsedMrpPrice = parseFloat(mrpPrice);
+
+// Check if any of the parsed values is not a valid number
+if (
+  isNaN(parsedDays) ||
+  isNaN(parsedNights) ||
+  isNaN(parsedStartingPrice) ||
+  isNaN(parsedMrpPrice)
+) {
+  throw new BadRequestError("Cannot convert given value to a valid number");
+}
+
+
   // Check if files are included in the request
   if (req.file) {
     // Format and upload screenshot
@@ -19,14 +49,16 @@ export const addNewPackage = async (req,res)=>{
     req.body.imgPublicId = response.public_id;
   }
   
+  if(!req.body.imgUrl){
+  throw new BadRequestError("Image is required");
+  }
 
-    if(!req.body.imgUrl){
-    throw new BadRequestError("Image is required");
-    }
 
-    const newPackage = await Package.create(req.body);
-  res.status(StatusCodes.OK).json({ newPackage });
+ const newPackage = await Package.create(req.body);
+ res.status(StatusCodes.OK).json({ newPackage });
 }
+
+
 
 export const getAllPackages = async (req,res)=>{
 const packages = await Package.find({})
@@ -42,6 +74,36 @@ res.status(StatusCodes.OK).json({ packageInfo });
 export const updatePackage = async (req,res)=>{
 
 const currentPackage = await Package.findOne({ _id: req.params.id });
+
+ // Destructure the fields from req.body
+const { days, nights, startingPrice, mrpPrice ,includedFeatures,excludedFeatures,tags,availability} = req.body;
+
+const includedFeaturesInArray = await includedFeatures.split(",").map(item => item.trim());
+req.body.includedFeatures = includedFeaturesInArray;
+
+const excludedFeaturesInArray = await excludedFeatures.split(",").map(item => item.trim());
+req.body.excludedFeatures = excludedFeaturesInArray;
+
+const tagsInArray = await tags.split(",").map(tag => tag.trim());
+req.body.tags = tagsInArray;
+
+  
+// Parse and convert the fields to numbers
+const parsedDays = parseInt(days);
+const parsedNights = parseInt(nights);
+const parsedStartingPrice = parseFloat(startingPrice);
+const parsedMrpPrice = parseFloat(mrpPrice);
+
+// Check if any of the parsed values is not a valid number
+if (
+  isNaN(parsedDays) ||
+  isNaN(parsedNights) ||
+  isNaN(parsedStartingPrice) ||
+  isNaN(parsedMrpPrice)
+) {
+  throw new BadRequestError("Cannot convert given value to a valid number");
+}
+
   if (req.file) {
     await cloudinary.v2.uploader.destroy(currentPackage.imgPublicId);
     // Format and upload screenshot
@@ -54,6 +116,9 @@ const currentPackage = await Package.findOne({ _id: req.params.id });
     req.body.imgPublicId = response.public_id;
   }
 
+  if(!availability){
+    throw new BadRequestError("availablity is required")
+  }
   
 
   await Package.findOneAndUpdate({ _id: req.params.id }, req.body, {
@@ -79,3 +144,5 @@ const {id} = req.params;
   }
   res.status(StatusCodes.OK).json({ msg:"Package deleted Successfully!" });
 }
+
+ 

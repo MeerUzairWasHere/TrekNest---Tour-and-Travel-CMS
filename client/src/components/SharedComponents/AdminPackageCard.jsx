@@ -2,59 +2,63 @@ import styled from "styled-components"
 import { Form, Link } from "react-router-dom"
 import SubmitButton from "./SubmitButton"
 const PackageCard = ({
-tourName,
-locationName,
-packageTitle,
-days,
-nights,
-startingPrice,
-mrpPrice,
-imgUrl,
-pageUrl,_id
+    tourName,
+    locationName,
+    packageTitle,
+    days,
+    nights,
+    startingPrice,
+    mrpPrice,
+    imgUrl,
+    pageUrl, _id, availability
 }) => {
-  return (
-    <PackageCardWrapper>
-        <div className="package-card">
-        <div className="package-card-img-wrap">
-<Link to={pageUrl} className="card-img"><img src={imgUrl} className="img" alt={tourName} /></Link>
-<div className="batch">
-<span className="date">{days} Days / {nights} Night</span>
-<div className="location">
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-<path d="M8.99939 0C5.40484 0 2.48047 2.92437 2.48047 6.51888C2.48047 10.9798 8.31426 17.5287 8.56264 17.8053C8.79594 18.0651 9.20326 18.0646 9.43613 17.8053C9.68451 17.5287 15.5183 10.9798 15.5183 6.51888C15.5182 2.92437 12.5939 0 8.99939 0ZM8.99939 9.79871C7.19088 9.79871 5.71959 8.32739 5.71959 6.51888C5.71959 4.71037 7.19091 3.23909 8.99939 3.23909C10.8079 3.23909 12.2791 4.71041 12.2791 6.51892C12.2791 8.32743 10.8079 9.79871 8.99939 9.79871Z"></path>
-</svg>
-<ul className="location-list">
-<li><Link to={pageUrl}>{locationName}</Link></li>
-<li><Link to={pageUrl}>{tourName}</Link></li>
-</ul>
-</div>
-</div>
-        </div>
-        <div className="package-card-content">
-<div className="card-content-top">
-<h5><Link to={pageUrl} >{packageTitle}</Link></h5>
- 
-</div>
-<div className="card-content-bottom">
-<div className="price-area">
-<h6>Starting Form:</h6>
-<span>₹{startingPrice} <del>₹{mrpPrice}</del></span>
-<p>TAXES INCL/PERS</p>
-</div>
-<div className="action-buttons">
-    <Link to={`/admin-dashboard/manage-packages/edit/${_id}`} className="primary-btn2">Edit
-</Link>
-      <Form method="post" action={`/admin-dashboard/manage-packages/delete/${_id}`}>
-        <SubmitButton  text="Delete" loadingText="Deleting..." />
-      </Form>
-     
-</div>
- 
-</div>
-</div>
-        </div>
-    </PackageCardWrapper>
-  )
+    return (
+        <PackageCardWrapper>
+            <div className="package-card">
+                <div className="package-card-img-wrap">
+                    <Link to={pageUrl} className="card-img"><img src={imgUrl} className="img" alt={tourName} /></Link>
+                    <div className="batch">
+                        <span className="date">{days} Days / {nights} Night</span>
+                        <div className="location">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                <path d="M8.99939 0C5.40484 0 2.48047 2.92437 2.48047 6.51888C2.48047 10.9798 8.31426 17.5287 8.56264 17.8053C8.79594 18.0651 9.20326 18.0646 9.43613 17.8053C9.68451 17.5287 15.5183 10.9798 15.5183 6.51888C15.5182 2.92437 12.5939 0 8.99939 0ZM8.99939 9.79871C7.19088 9.79871 5.71959 8.32739 5.71959 6.51888C5.71959 4.71037 7.19091 3.23909 8.99939 3.23909C10.8079 3.23909 12.2791 4.71041 12.2791 6.51892C12.2791 8.32743 10.8079 9.79871 8.99939 9.79871Z"></path>
+                            </svg>
+                            <ul className="location-list">
+                                <li><Link to={pageUrl}>{locationName}</Link></li>
+                                <li><Link to={pageUrl}>{tourName}</Link></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="package-card-content">
+
+                    <div className="card-content-top">
+                        <h5><Link to={pageUrl} >{packageTitle}</Link></h5>
+                        <h5 className="availability">{availability} </h5>
+
+                    </div>
+
+                    <div className="card-content-bottom">
+                        <div className="price-area">
+                            <h6>Starting Form:</h6>
+                            <span>₹{startingPrice?.toLocaleString()} <del>₹{mrpPrice?.toLocaleString()}</del></span>
+                            <p>TAXES INCL/PERS</p>
+                        </div>
+                        <div className="action-buttons">
+                            <Link to={`/admin-dashboard/manage-packages/edit/${_id}`} className="primary-btn2">Edit
+                            </Link>
+                            <Form method="post" action={`/admin-dashboard/manage-packages/delete/${_id}`}>
+                                <SubmitButton text="Delete" loadingText="Deleting..." />
+                            </Form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </PackageCardWrapper>
+    )
 }
 export default PackageCard
 
@@ -118,7 +122,16 @@ const PackageCardWrapper = styled.div`
     background-color: transparent;
 }
 .package-card .package-card-content .card-content-top {
-    padding-top: 20px;
+    padding-top: 20px;  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.package-card .package-card-content .card-content-top .availability {
+  font-size: .9rem;
+  background: yellow;
+  padding: 5px 10px;
+  border-radius: 10px;
 }
 .package-card .package-card-content .card-content-top h5 {
     margin-bottom: 15px;

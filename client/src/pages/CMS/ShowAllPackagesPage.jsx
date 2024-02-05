@@ -32,9 +32,10 @@ nights,
 startingPrice,
 mrpPrice,
 imgUrl,
+availability,
 _id
 })=>(
-                    <AdminPackageCard key={_id} tourName = {tourName} locationName = {locationName} packageTitle = {packageTitle} days = {days} nights = {nights} startingPrice = {startingPrice} mrpPrice = {mrpPrice} imgUrl = {imgUrl} _id={_id}    />
+                  <AdminPackageCard key={_id} tourName={tourName} locationName={locationName} packageTitle={packageTitle} days={days} nights={nights} startingPrice={startingPrice} mrpPrice={mrpPrice} imgUrl={imgUrl} _id={_id} availability={availability}    />
                 ))
             }
         </div>

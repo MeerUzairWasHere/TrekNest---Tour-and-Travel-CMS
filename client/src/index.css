@@ -221,18 +221,37 @@ h2 {
   }
   
 }
-input {
-  padding: 10px;
-  border: 2px solid #ddd; /* Border color input */
-  border-radius: 8px; /* Border radius input */
-  transition: border-color 0.3s ease-in-out;
-  outline: none;
-  color: #333;
-  background-color: #f4f4f4; /* Warna input */
-}
+ 
 
 input:focus {
   border-color: #ff9900; /* Warna input saat focus */
+}
+/* Styling for both input and select elements */
+input {
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.3s ease-in-out;
+  outline: none;
+  color: #333;
+  background-color: #f4f4f4;
+}
+
+select{
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.3s ease-in-out;
+  outline: none;
+  color: #333;
+  background-color: #f4f4f4;
+  width: 100%;
+  text-transform: capitalize;
+}
+
+/* Styling for select element when focused */
+select:focus {
+  border-color: #ff9900;
 }
 
 .form-button {

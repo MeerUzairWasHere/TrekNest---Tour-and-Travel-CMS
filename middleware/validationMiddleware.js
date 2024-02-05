@@ -125,13 +125,27 @@ export const validateResetPasswordInput = withValidationErrors([
 ]);
  
 export const validatePackagesInput = withValidationErrors([
-  body('tourName').notEmpty().withMessage("tourName is required"),
-  body('locationName').notEmpty().withMessage("locationName is required"),
-  body('packageTitle').notEmpty().withMessage("packageTitle is required"),
-  body('days').notEmpty().withMessage("days is required"),
-  body('nights').notEmpty().withMessage("nights is required"),
-  body('startingPrice').notEmpty().withMessage("startingPrice is required"),
-  body('mrpPrice').notEmpty().withMessage("mrpPrice is required")
+ body('tourName').trim().notEmpty().withMessage('Tour name is required'),
+ body('richText').notEmpty().withMessage('richTexT is required').custom(value => {
+        // Check for XSS vulnerabilities in the HTML content
+        if (!isValidHTMLForXSS(value)) {
+            throw new Error('HTML content contains potentially dangerous tags or attributes');
+        }
+        return true; // Validation passed
+    }),
+  body('locationName').trim().notEmpty().withMessage('Location name is required'),
+  body('packageTitle').trim().notEmpty().withMessage('Package title is required'),
+  body('days').trim().notEmpty().withMessage('Days is required').isInt({ min: 1 }).withMessage('Days must be a positive integer'),
+  body('nights').trim().notEmpty().withMessage('Nights is required').isInt({ min: 1 }).withMessage('Nights must be a positive integer'),
+  body('startingPrice').trim().notEmpty().withMessage('Starting price is required').isFloat({ min: 0 }).withMessage('Starting price must be a positive number'),
+  body('mrpPrice').trim().notEmpty().withMessage('MRP price is required').isFloat({ min: 0 }).withMessage('MRP price must be a positive number'),
+  body('description').trim().notEmpty().withMessage('Description is required'),
+  body('includedFeatures').notEmpty().withMessage('Included features must be provided and separate by comma " , "'),
+  body('excludedFeatures').notEmpty().withMessage('Excluded features must be provided and separate by comma " , "'),
+  body('tags').notEmpty().withMessage('Tags must be provided and separate by comma " , "'),
+  body('availability').trim().optional().isIn(['limited', 'available', 'sold out']).withMessage('Invalid availability status'),
+  body('bookingCount').optional().isInt({ min: 0 }).withMessage('Booking count must be a non-negative integer'),
+  body('promotionalOffer').optional().trim(),
 ]);
 
 export const validateIdParamForPackages = withValidationErrors([
@@ -187,12 +201,15 @@ export const validateIdParamForBookings = withValidationErrors([
   if (!currentBooking ) throw new NotFoundError(`No Booking with id ${value} found!`);
 })]);
 
-/*
-userId
-packageId
-startDate
-endDate
-numberOfPersons
-totalPrice
+// Example function to validate HTML content for XSS
+function isValidHTMLForXSS(htmlContent) {
+    // Regular expression to check for potentially dangerous tags and attributes
+    const regex = /<\s*(script|iframe|style|object|embed|frame|frameset|meta|applet|base|bgsound|blink|link|xml|math|on\w+)[^>]*>/gi;
 
-*/
+    // Check if the HTML content matches the regular expression
+    if (regex.test(htmlContent)) {
+        return false; // Content contains potentially dangerous tags or attributes
+    }
+
+    return true; // Content is safe
+}

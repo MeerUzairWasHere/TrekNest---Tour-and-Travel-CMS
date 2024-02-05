@@ -24,7 +24,7 @@ const HomePackages = () => {
       <h2>Affordable Vacation Bundles</h2>
       <div className="packages-container">
         {packages.map((pack, index) => {
-          return <PackageCard key={index} {...pack} />
+          return <PackageCard key={index} id={pack._id} {...pack} />
         })}
       </div>
 

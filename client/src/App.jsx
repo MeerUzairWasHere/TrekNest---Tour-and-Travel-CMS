@@ -31,6 +31,7 @@ import { action as EditPackageAction } from "./pages/CMS/EditPackagePage";
 import { loader as LayoutLoader } from "./pages/Layout";
 import { loader as PackagesLoader } from "./components/HomeComponents/HomePackages";
 import { loader as MyBookingsLoader } from "./pages/MyBookingPage";
+import { loader as PackageInfoLoader } from "./pages/PackageInfoPage";
 
 
 
@@ -38,6 +39,7 @@ import { loader as MyBookingsLoader } from "./pages/MyBookingPage";
 import { action as LogoutAction } from "./pages/Logout";
 import { action as LoginAction } from "./pages/LoginPage";
 import { action as RegisterAction } from "./pages/RegisterPage";
+import PackageInfoPage from "./pages/PackageInfoPage";
 
 
 
@@ -52,7 +54,13 @@ const router = createBrowserRouter([
       index: true,
       element: <Home />,
       loader: PackagesLoader,
-    }, {
+    },
+    {
+      path: "/packages/:id",
+      element: <PackageInfoPage />,
+      loader:PackageInfoLoader,
+    },
+    {
       path: "/login",
       element: <LoginPage />,
       action: LoginAction
