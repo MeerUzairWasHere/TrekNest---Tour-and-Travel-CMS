@@ -1,9 +1,13 @@
-import { Form, redirect, useLoaderData } from "react-router-dom"
+import { Form, redirect, useLoaderData, useNavigate, useParams } from "react-router-dom"
 import { SubmitButton } from "../../components"
 import customFetch from "../../utils/customFetch";
 import { toast } from "react-toastify";
 import { AVAILABILITY_STATUS } from "../../utils/contants";
 import FormRowSelect from "../../components/SharedComponents/FormSelect";
+import { useState } from "react";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
 
 export const loader = async ({ params }) => {
   try {
@@ -15,31 +19,42 @@ export const loader = async ({ params }) => {
   }
 };
 
-export const action = async ({ params, request }) => {
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
-
-  try {
-    await customFetch.patch(`/packages/admin/${params.id}`, data, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    toast.success("Updated package successfully!");
-    return redirect("/admin-dashboard/manage-packages");
-  } catch (error) {
-    toast.error(error?.response?.data?.msg);
-    return redirect("/admin-dashboard/manage-packages");
-  }
-};
 
 const EditPackagePage = () => {
   const { packageInfo } = useLoaderData()
+  const { id } = useParams();
+
+  const [value, setValue] = useState(packageInfo.itinerary || "");
+  const navigate = useNavigate()
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+
+
+    const formData = new FormData(event.target);
+    formData.append('itinerary', value); // Append ReactQuill data to formData
+    const data = Object.fromEntries(formData);
+
+
+    try {
+      await customFetch.patch(`/packages/admin/${id}`, { ...data }, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      toast.success("Updated package successfully!");
+      return navigate("/admin-dashboard/manage-packages")
+    } catch (error) {
+      toast.error(error?.response?.data?.msg);
+      redirect("/admin-dashboard/manage-packages");
+    }
+  };
+
 
   return (
     <div>
       <div className="card">
-        <Form method="post"
+        <Form method="post" onSubmit={handleSubmit}
           encType="multipart/form-data" className="form">
           <input
             type="file"
@@ -148,19 +163,16 @@ const EditPackagePage = () => {
             id="description"
             required
           />
-          <input
-            type="text"
-            placeholder="Package Itenary, change to texteditor later"
-            name="richText"
-            defaultValue={packageInfo.richText}
-            id="richText"
-            required
-          />
-
-
-
 
           <SubmitButton text="Submit" loadingText="Submitting..." />
+          <ReactQuill
+            theme="snow"
+            value={value}
+            onChange={setValue}
+            style={{ color: 'black', height: "400px", marginBottom: "3rem", width: "100%" }}
+            defaultValue={value}
+            placeholder='itinerary'
+          />
 
         </Form>
       </div>

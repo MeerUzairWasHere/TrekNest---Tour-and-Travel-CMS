@@ -4,19 +4,19 @@ import { BadRequestError } from "../errors/customErrors.js";
 
 
 export const createBooking = async (req,res)=>{
-
   req.body.userId = req.user.userId
-
+  
   if(!req.body.userId){
     throw new BadRequestError("UserId is required!")
   }
+  console.log(req.body)
   const booking = await Booking.create(req.body);
 
   res.status(StatusCodes.OK).json({ booking });
 }
 
 export const getAllBookings = async (req,res)=>{
-  const bookings = await Booking.find({userId:req.user.userId}).populate({path:'userId', select:"name email phoneNumber"}).populate({path:'packageId', select:"packageTitle startingPrice"}).sort({ createdAt: -1 });
+  const bookings = await Booking.find({userId:req.user.userId}).populate({path:'packageId', select:"packageTitle startingPrice"}).populate({path:'userId', select:"name email phoneNumber"}).sort({ createdAt: -1 });
   const totalBookings = await Booking.countDocuments({userId:req.user.userId});
   res.status(StatusCodes.OK).json({ totalBookings,bookings });
 }

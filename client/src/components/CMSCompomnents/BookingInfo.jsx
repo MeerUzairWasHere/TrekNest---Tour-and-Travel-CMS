@@ -4,12 +4,11 @@ import dayjs from 'dayjs'
 import { BOOKING_STATUS } from '../../utils/contants';
 
 
-const BookingInfo = ({ id, admin,bookingNumber, name, email, phoneNumber, packageTitle, startingPrice, totalPrice, bookingDate, startDate, endDate, numberOfPersons, bookingStatus, }) => {
+const BookingInfo = ({ id, admin,bookingNumber, name, email, phoneNumber, packageTitle, startingPrice, totalPrice, bookingDate, startDate,  numberOfPersons, bookingStatus, }) => {
 
 
     const formattedDatebookingDate = dayjs(bookingDate).format('DD - MM - YYYY');
     const formattedDateStartDate = dayjs(startDate).format('DD - MM - YYYY');
-    const formattedDateEndDate = dayjs(endDate).format('DD - MM - YYYY');
 
     const getStatusColor = (status) => {
         switch (status) {
@@ -33,13 +32,12 @@ const BookingInfo = ({ id, admin,bookingNumber, name, email, phoneNumber, packag
             <p>Phone number: <span>{phoneNumber}</span></p>
             <p>Package: <span>{packageTitle}</span></p>
             <p>
-                Price: <span>₹{startingPrice}</span>
+                Package Price: <span>₹{startingPrice}</span>
                 <br />
                 Total Price: <span>₹{totalPrice}</span>
             </p>
             <p>No. of Persons: <span>{numberOfPersons}</span></p>
             <p>Start Date: <span>{formattedDateStartDate}</span></p>
-            <p>End Date: <span>{formattedDateEndDate}</span></p>
             <p>Booking Status: <span style={{ textTransform: "capitalize", color: getStatusColor(bookingStatus) }}>{bookingStatus}</span></p>
             {admin && <Link to={`edit/${id}`} >Update</Link>}
         </Wrapper>

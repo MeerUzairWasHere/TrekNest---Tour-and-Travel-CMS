@@ -126,7 +126,7 @@ export const validateResetPasswordInput = withValidationErrors([
  
 export const validatePackagesInput = withValidationErrors([
  body('tourName').trim().notEmpty().withMessage('Tour name is required'),
- body('richText').notEmpty().withMessage('richTexT is required').custom(value => {
+ body('itinerary').notEmpty().withMessage('Itinerary isx required').custom(value => {
         // Check for XSS vulnerabilities in the HTML content
         if (!isValidHTMLForXSS(value)) {
             throw new Error('HTML content contains potentially dangerous tags or attributes');
@@ -172,10 +172,6 @@ export const validateBookingsInput = withValidationErrors([
     .exists().withMessage('Start date is required')
     .isISO8601().withMessage('Invalid start date'),
 
-  // Validate endDate
-  body('endDate')
-    .exists().withMessage('End date is required')
-    .isISO8601().withMessage('Invalid end date'),
 
   // Validate numberOfPersons
   body('numberOfPersons')

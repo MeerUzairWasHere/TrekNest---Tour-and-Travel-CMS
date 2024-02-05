@@ -57,9 +57,7 @@ if (
  const newPackage = await Package.create(req.body);
  res.status(StatusCodes.OK).json({ newPackage });
 }
-
-
-
+ 
 export const getAllPackages = async (req,res)=>{
 const packages = await Package.find({})
   res.status(StatusCodes.OK).json({ packages });
@@ -72,7 +70,7 @@ res.status(StatusCodes.OK).json({ packageInfo });
 }
 
 export const updatePackage = async (req,res)=>{
-
+ 
 const currentPackage = await Package.findOne({ _id: req.params.id });
 
  // Destructure the fields from req.body

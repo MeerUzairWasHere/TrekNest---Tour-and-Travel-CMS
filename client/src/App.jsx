@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // importing pages
 import Home from "./pages/Home";
+import PackageInfoPage from "./pages/PackageInfoPage";
 import Layout from "./pages/Layout";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -19,12 +20,13 @@ import { loader as ShowAllPackagesLoader } from "./pages/CMS/ShowAllPackagesPage
 import { loader as EditPackageLoader } from "./pages/CMS/EditPackagePage";
 import { loader as GetAllBookingsLoader } from "./pages/CMS/ManageBookingsPage";
 import { loader as AdminDashboardLoader } from "./pages/CMS/AdminDashboardPage";
+import { loader as EditBookingLoader } from "./pages/CMS/EditBookingPage";
 
 // cms action
 import { action as DeleteUserAction } from "./pages/CMS/DeleteUserPage";
 import { action as DeletePackageAction } from "./pages/CMS/DeletePackagePage";
 import { action as AddNewPackageAction } from "./pages/CMS/AddNewPackagePage";
-import { action as EditPackageAction } from "./pages/CMS/EditPackagePage";
+import { action as EditBookingAction } from "./pages/CMS/EditBookingPage";
 
 
 //loaders
@@ -39,7 +41,7 @@ import { loader as PackageInfoLoader } from "./pages/PackageInfoPage";
 import { action as LogoutAction } from "./pages/Logout";
 import { action as LoginAction } from "./pages/LoginPage";
 import { action as RegisterAction } from "./pages/RegisterPage";
-import PackageInfoPage from "./pages/PackageInfoPage";
+import EditBookingPage from "./pages/CMS/EditBookingPage";
 
 
 
@@ -58,7 +60,7 @@ const router = createBrowserRouter([
     {
       path: "/packages/:id",
       element: <PackageInfoPage />,
-      loader:PackageInfoLoader,
+      loader: PackageInfoLoader,
     },
     {
       path: "/login",
@@ -99,6 +101,12 @@ const router = createBrowserRouter([
           loader: GetAllBookingsLoader
         },
         {
+          path: "/admin-dashboard/manage-bookings/edit/:id",
+          element: <EditBookingPage />,
+          loader: EditBookingLoader,
+          action: EditBookingAction
+        },
+        {
           path: "/admin-dashboard/manage-packages",
           element: <ManagePackagesPage />,
           children: [{
@@ -113,7 +121,6 @@ const router = createBrowserRouter([
             path: "/admin-dashboard/manage-packages/edit/:id",
             element: <EditPackagePage />,
             loader: EditPackageLoader,
-            action: EditPackageAction,
           }, {
             path: "/admin-dashboard/manage-packages/delete/:id",
             action: DeletePackageAction

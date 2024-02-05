@@ -21,9 +21,8 @@ export const action = async ({ request }) => {
   }
 };
 
-
-
 const AddNewPackagePage = () => {
+
   return (
     <div>
       <div className="card">
@@ -60,7 +59,7 @@ const AddNewPackagePage = () => {
 
           <input
             type="text"
-            placeholder=" Number of days"
+            placeholder="Number of days"
             name="days"
             id="days"
             required
@@ -89,8 +88,8 @@ const AddNewPackagePage = () => {
             id="mrpPrice"
             required
           />
-         
-         
+
+
           <input
             type="text"
             placeholder="Included Features, separate by ( , )"
@@ -115,26 +114,30 @@ const AddNewPackagePage = () => {
 
           <input
             type="text"
-            placeholder="Package Description, change to texteditor later"
+            placeholder="Package Description"
             name="description"
             id="description"
             required
           />
-          <text 
+
+          <input
             type="text"
-            placeholder="Package Itenary, change to texteditor later"
-            name="richText"
-            id="richText"
+            placeholder="Package itinerary"
+            name="itinerary"
+            id="itinerary"
+            defaultValue="<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, eveniet!</p>"
             required
           />
-          
 
 
           <SubmitButton text="Submit" loadingText="Submitting..." />
 
         </Form>
       </div>
+      
     </div>
   )
 }
 export default AddNewPackagePage
+
+

@@ -21,10 +21,6 @@ const bookingSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  endDate: {
-    type: Date, //year month day
-    required: true
-  },
   numberOfPersons: {
     type: Number,
     required: true

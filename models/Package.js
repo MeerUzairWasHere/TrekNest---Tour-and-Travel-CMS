@@ -41,7 +41,7 @@ const PackageSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  richText: {
+  itinerary: {
     type: String,
     required: true,
   },

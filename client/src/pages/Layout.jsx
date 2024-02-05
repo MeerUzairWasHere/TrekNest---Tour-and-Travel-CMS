@@ -23,7 +23,6 @@ const Layout = () => {
   const isPageLoading = navigation.state === "loading";
 
   const { user } = useLoaderData();
-  console.log(user) //remove
 
   return (
     <myContext.Provider value={{ user }}>
