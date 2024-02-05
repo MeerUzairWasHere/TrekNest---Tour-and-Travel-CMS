@@ -10,8 +10,23 @@ const PackageCard = ({
     startingPrice,
     mrpPrice,
     imgUrl,
-    pageUrl, _id, availability
+    pageUrl, _id, availability, numberOfBookings
 }) => {
+    const getColor = (availability) => {
+        switch (availability) {
+            case 'limited':
+                return 'green';
+            case 'available':
+                return 'black';
+            case 'sold out':
+                return 'red';
+            default:
+                return 'black';
+        }
+    };
+
+    // Get the color based on the availability text
+    const color = getColor(availability);
     return (
         <PackageCardWrapper>
             <div className="package-card">
@@ -35,15 +50,16 @@ const PackageCard = ({
 
                     <div className="card-content-top">
                         <h5><Link to={pageUrl} >{packageTitle}</Link></h5>
-                        <h5 className="availability">{availability} </h5>
-
+                        <h5 className="availability" style={{ color }}>
+                            {availability}
+                        </h5>
                     </div>
 
                     <div className="card-content-bottom">
                         <div className="price-area">
                             <h6>Starting Form:</h6>
                             <span>₹{startingPrice?.toLocaleString()} <del>₹{mrpPrice?.toLocaleString()}</del></span>
-                            <p>TAXES INCL/PERS</p>
+                            <p style={{ fontSize: ".9rem" }}>Number of bookings: <strong>{numberOfBookings || "0"}</strong> </p>
                         </div>
                         <div className="action-buttons">
                             <Link to={`/admin-dashboard/manage-packages/edit/${_id}`} className="primary-btn2">Edit

@@ -1,6 +1,8 @@
 import { StatusCodes } from "http-status-codes";
 import Booking from '../models/Booking.js'
 import { BadRequestError } from "../errors/customErrors.js";
+import Package from "../models/Package.js";
+ 
 
 
 export const createBooking = async (req,res)=>{
@@ -9,8 +11,34 @@ export const createBooking = async (req,res)=>{
   if(!req.body.userId){
     throw new BadRequestError("UserId is required!")
   }
-  console.log(req.body)
+
+  const packageAvailability = await Package.findOne({ _id: req.body.packageId, availability: "sold out" });
+
+if (packageAvailability) {
+    throw new Error("This package is currently sold out.");
+}
+
+  const existingBooking = await Booking.findOne({userId:req.user.userId,packageId:req.body.packageId,bookingStatus:"pending"})
+  
+  if(existingBooking){
+    throw new BadRequestError("You have already booked this package!")
+  }
+
+
+
+  
+  
   const booking = await Booking.create(req.body);
+
+   const currentPackage = await Package.findOne({_id:booking?.packageId})
+  
+  const increaseCount = currentPackage?.numberOfBookings + 1 
+
+   await Package.findOneAndUpdate({_id:booking?.packageId},{numberOfBookings:increaseCount}, {
+    new: true,
+    runValidators: true,
+  })
+  
 
   res.status(StatusCodes.OK).json({ booking });
 }
@@ -36,7 +64,7 @@ res.status(StatusCodes.OK).json({ booking });
 export const updateBooking  = async (req,res)=>{
 const {id} = req.params;
   await Booking.findOneAndUpdate({ _id: id }, req.body, {
-    new: true,
+    new: true,  
     runValidators: true,
   });
 

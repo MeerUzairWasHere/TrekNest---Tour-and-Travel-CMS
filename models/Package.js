@@ -13,6 +13,10 @@ const PackageSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  numberOfBookings:{
+    type: Number,
+    default:0
+  } ,
   days: {
     type: Number, // Assuming the number of days is a numerical value
     required: true,

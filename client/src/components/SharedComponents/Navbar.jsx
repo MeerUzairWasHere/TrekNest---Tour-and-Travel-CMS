@@ -3,18 +3,18 @@ import styled from "styled-components";
 import { useState } from "react";
 
 //icons 
-import { AlignRight,PhoneOutgoing,X } from "lucide-react";  
+import { AlignRight, PhoneOutgoing, X } from "lucide-react";
 import Navlinks from "./Navlinks";
 import { useMyContext } from "../../pages/Layout";
 
 
 const Navbar = () => {
-  const {user}= useMyContext();
- const [isOn, setIsOn] = useState(false)
+  const { user } = useMyContext();
+  const [isOn, setIsOn] = useState(false)
 
-  const toggle = ()=>{
-       setIsOn((prev)=>{return !prev})
-       console.log("cicked")
+  const toggle = () => {
+    setIsOn((prev) => { return !prev })
+
   }
   return (
     <Wrapper>
@@ -23,7 +23,7 @@ const Navbar = () => {
       </Link>
       {/*  //for > 768px // */}
       <ul className="hide">
-        <Navlinks/>
+        <Navlinks />
       </ul>
       <div id="contact" className="contact">
         <span>
@@ -37,15 +37,15 @@ const Navbar = () => {
       {/*  //for < 768px // */}
       <div className={isOn ? "hide-for-mb showOn" : "hide-for-mb showOff"}>
         <div className="head">
-           <Link to="/" className="main-logo">
-        TrekNest
-      </Link>
+          <Link to="/" className="main-logo">
+            TrekNest
+          </Link>
           <span className="close-btn" onClick={toggle}>
             <X />
           </span>
         </div>
         <ul>
-         <Navlinks toggle={toggle}/>
+          <Navlinks toggle={toggle} />
         </ul>
         <div className="contact">
           <span>
@@ -53,7 +53,7 @@ const Navbar = () => {
           </span>
           <div className="contactInfo">
             <span>To more inquiry</span>
-    <a href="tel:+918899080590">+91 8899080590</a>
+            <a href="tel:+918899080590">+91 8899080590</a>
           </div>
         </div>
       </div>
@@ -142,6 +142,12 @@ padding: .5rem 1rem;
   .hide-for-mb {
     display: none;
   }
+  .hide-for-mb ul{
+    margin-block: 1rem;
+  }
+  .hide-for-mb ul li{
+    margin-bottom: 1rem;
+  }
   .contact {
     display: flex;
     align-items: center;
@@ -165,6 +171,7 @@ padding: .5rem 1rem;
   .contactInfo span {
     font-size: 0.8rem;
   }
+   
 
   /* -----------------------MEDIA QUERIES--------------------------- */
 

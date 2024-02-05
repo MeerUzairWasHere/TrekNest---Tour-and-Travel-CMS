@@ -3,23 +3,24 @@ import SanistaText from "../SharedComponents/SanistaText"
 import PackageCard from "../SharedComponents/PackageCard"
 
 
-const HomePackages = ({packages=[]}) => {
+
+const PopularPackages = ({ popularPackages = [] }) => {
   return (
-    <HomePackagesWrapper>
-      <SanistaText text="Tour Package" />
-      <h2>Affordable Vacation Bundles</h2>
+    <PopularPackagesWrapper>
+      <SanistaText text="Popular Tour" />
+      <h2>Elite Tourist Attractions</h2>
       <div className="packages-container">
-        {packages?.map((pack, index) => {
+        {popularPackages?.map((pack, index) => {
           return <PackageCard key={index} id={pack._id} {...pack} />
         })}
       </div>
 
-    </HomePackagesWrapper>
+    </PopularPackagesWrapper>
   )
 }
-export default HomePackages
+export default PopularPackages
 
-const HomePackagesWrapper = styled.div`
+const PopularPackagesWrapper = styled.div`
 margin: 5rem 0;
 display: flex;
 flex-direction: column;

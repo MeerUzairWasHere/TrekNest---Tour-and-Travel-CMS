@@ -16,12 +16,15 @@ import { addNewPackage,
 getAllPackages,
 getSinglePackage,
 updatePackage,
-deletePackage } from '../controllers/packageController.js'
+deletePackage, 
+getPopularPackages} from '../controllers/packageController.js'
 
 // Routes for /admin
 router.route("/admin")
   .get(getAllPackages)
   .post(authenticateUser, authorizePermissions("admin"), imageUploadMiddleware.single("imgUrl"),validatePackagesInput, addNewPackage);
+
+  router.route("/admin/popularPackages").get(getPopularPackages)
 
 // Routes for /admin/:id
 router.route("/admin/:id")

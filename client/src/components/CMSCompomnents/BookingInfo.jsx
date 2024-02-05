@@ -1,10 +1,11 @@
 import { styled } from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Form, Link } from 'react-router-dom'
 import dayjs from 'dayjs'
 import { BOOKING_STATUS } from '../../utils/contants';
+import SubmitButton from '../SharedComponents/SubmitButton';
 
 
-const BookingInfo = ({ id, admin,bookingNumber, name, email, phoneNumber, packageTitle, startingPrice, totalPrice, bookingDate, startDate,  numberOfPersons, bookingStatus, }) => {
+const BookingInfo = ({ id, admin, bookingNumber, name, email, phoneNumber, packageTitle, startingPrice, totalPrice, bookingDate, startDate, numberOfPersons, bookingStatus, }) => {
 
 
     const formattedDatebookingDate = dayjs(bookingDate).format('DD - MM - YYYY');
@@ -31,15 +32,19 @@ const BookingInfo = ({ id, admin,bookingNumber, name, email, phoneNumber, packag
             <p>Email: <span>{email}</span></p>
             <p>Phone number: <span>{phoneNumber}</span></p>
             <p>Package: <span>{packageTitle}</span></p>
-            <p>
-                Package Price: <span>₹{startingPrice}</span>
-                <br />
-                Total Price: <span>₹{totalPrice}</span>
-            </p>
+            <p>Package Price: <span>₹{startingPrice?.toLocaleString()}</span></p>
+            <p>Total Price: <span>₹{totalPrice?.toLocaleString()}</span></p>
             <p>No. of Persons: <span>{numberOfPersons}</span></p>
             <p>Start Date: <span>{formattedDateStartDate}</span></p>
             <p>Booking Status: <span style={{ textTransform: "capitalize", color: getStatusColor(bookingStatus) }}>{bookingStatus}</span></p>
-            {admin && <Link to={`edit/${id}`} >Update</Link>}
+            {admin && <><div className="action-btns">
+                <Link to={`edit/${id}`} >Update</Link>
+                <Form method="post" action={`/admin-dashboard/manage-bookings/delete/${id}`}>
+                    <SubmitButton text="Delete" loadingText="Deleting..." />
+                </Form>
+            </div>
+            </>}
+
         </Wrapper>
     )
 }
@@ -48,7 +53,7 @@ export default BookingInfo
 const Wrapper = styled.div`
     display: grid;
     grid-template-columns:repeat(4,1fr);
-    grid-template-rows:1fr 1fr;
+    grid-template-rows:1fr 1fr 1fr;
     gap: .5rem;
      width: 100%;
     background-color: #fff;
@@ -56,8 +61,28 @@ const Wrapper = styled.div`
     border-radius: 8px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    p{
+        display: flex;
+        align-items: center;
+        gap: .2rem;
+    }
+.action-btns{
+        align-items: center;
+    display: flex;
+    justify-content: start;
+    gap: 1rem;
+}
+.action-btns button{
+       padding-inline: 30px;
+    background-color: red;
+}
     
-
+.action-btns a{
+    display: flex;
+        align-items: center;
+        height: 100%;
+    justify-content: center;
+}
 
 a{
     border: 0;

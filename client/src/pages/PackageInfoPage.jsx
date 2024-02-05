@@ -10,12 +10,13 @@ import { SlCalender } from "react-icons/sl";
 import { LuCheck } from "react-icons/lu";
 import { IoMdClose } from "react-icons/io";
 import parse from 'html-react-parser';
-import { SubmitButton } from "../components";
+import { PopularPackages, SubmitButton } from "../components";
 
 export const loader = async ({ params }) => {
   try {
-    const { data } = await customFetch.get("/packages/admin/" + params.id);
-    return data;
+    const { data: { packageInfo } } = await customFetch.get("/packages/admin/" + params.id);
+    const { data: { popularPackages } } = await customFetch.get("/packages/admin/popularPackages");
+    return { packageInfo, popularPackages };
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     return redirect("/");
@@ -26,7 +27,7 @@ export const loader = async ({ params }) => {
 
 const PackageInfoPage = () => {
   const { user } = useMyContext()
-  const { packageInfo } = useLoaderData()
+  const { packageInfo, popularPackages } = useLoaderData()
 
   const [numberOfPeople, setNumberOfPeople] = useState(1)
   const [startingPrice, setStartingPrice] = useState(packageInfo?.startingPrice)
@@ -160,10 +161,17 @@ const PackageInfoPage = () => {
 
               <div className="total-price"><span>Total Price:</span> ₹{totalPrice?.toLocaleString()}</div>
               <SubmitButton loadingText="Please, wait..." text="Book Now" />
+              <p>We are getting userinfo from your profile for booking this package.</p>
             </Form>
           </div>
         </div>
       </div>
+
+      <div className="popular-packages-container">
+        <PopularPackages popularPackages={popularPackages} />
+      </div>
+
+
     </Wrapper>
   )
 }

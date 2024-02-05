@@ -24,6 +24,7 @@ import { loader as EditBookingLoader } from "./pages/CMS/EditBookingPage";
 
 // cms action
 import { action as DeleteUserAction } from "./pages/CMS/DeleteUserPage";
+import { action as DeleteBookingAction } from "./pages/CMS/DeleteBookingAction";
 import { action as DeletePackageAction } from "./pages/CMS/DeletePackagePage";
 import { action as AddNewPackageAction } from "./pages/CMS/AddNewPackagePage";
 import { action as EditBookingAction } from "./pages/CMS/EditBookingPage";
@@ -31,7 +32,7 @@ import { action as EditBookingAction } from "./pages/CMS/EditBookingPage";
 
 //loaders
 import { loader as LayoutLoader } from "./pages/Layout";
-import { loader as PackagesLoader } from "./components/HomeComponents/HomePackages";
+import { loader as HomeLoader } from "./pages/Home";
 import { loader as MyBookingsLoader } from "./pages/MyBookingPage";
 import { loader as PackageInfoLoader } from "./pages/PackageInfoPage";
 
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
     children: [{
       index: true,
       element: <Home />,
-      loader: PackagesLoader,
+      loader: HomeLoader,
     },
     {
       path: "/packages/:id",
@@ -105,6 +106,10 @@ const router = createBrowserRouter([
           element: <EditBookingPage />,
           loader: EditBookingLoader,
           action: EditBookingAction
+        },
+        {
+          path: "/admin-dashboard/manage-bookings/delete/:id",
+          action: DeleteBookingAction
         },
         {
           path: "/admin-dashboard/manage-packages",

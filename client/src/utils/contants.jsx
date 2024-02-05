@@ -9,3 +9,4 @@ export const AVAILABILITY_STATUS = {
     AVAILABLE: 'available',
     SOLD_OUT: 'sold out'
 };
+

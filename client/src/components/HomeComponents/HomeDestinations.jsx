@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import SanistaText  from "../SharedComponents/SanistaText"
+import SanistaText from "../SharedComponents/SanistaText"
 import YellowBatch from "../SharedComponents/YellowBatch"
 
 //images
@@ -14,25 +14,25 @@ import { Link } from "react-router-dom"
 const DestinationsInfo = [
   {
     location: "Gulmarg",
-    imageUrl:Gulmarg
-},
-  {   
-    
-      location: "Srinagar",
-      imageUrl:Srinagar
-  },
-  
-  {
-      location: "Pahalgam",
-      imageUrl:Pahalgam
+    imageUrl: Gulmarg
   },
   {
-      location: "Dal Lake",
-      imageUrl:DalLake
+
+    location: "Srinagar",
+    imageUrl: Srinagar
+  },
+
+  {
+    location: "Pahalgam",
+    imageUrl: Pahalgam
   },
   {
-      location: "Sonamarg",
-      imageUrl:Sonamarg
+    location: "Dal Lake",
+    imageUrl: DalLake
+  },
+  {
+    location: "Sonamarg",
+    imageUrl: Sonamarg
   }
 ];
 
@@ -40,28 +40,28 @@ const HomeDestinations = () => {
   return (
     <HomeDestinationsWrapper>
       <SanistaText text="Journey to the" />
-      <h1>Desired Vacation Spots</h1>
-    <div className="destinaion-images">
-{DestinationsInfo.map((dest,index)=>{
-  return (  <div key={dest.location} className={`image${index+1}`}>
-  <img src={dest.imageUrl}  className="images" alt="destination image" />
-  <div className="card-title">
-  <h4>{dest.location}</h4>
-  </div>
-</div>)
-})}
- 
-  <div className="image6">
-    <img src={bgGradient} className="images"  alt="destination image" />
-    <div className="destination-banner">
-<div className="destination-banner-content">
-<YellowBatch text="Get 20% Off" />
-<h2>Of Our All Destination</h2>
-<Link to="/destination" className="primary-button">View All Destination</Link>
-</div>
-</div>
-  </div>
-    </div>
+      <h2>Desired Vacation Spots</h2>
+      <div className="destinaion-images">
+        {DestinationsInfo.map((dest, index) => {
+          return (<div key={dest.location} className={`image${index + 1}`}>
+            <img src={dest.imageUrl} className="images" alt="destination image" />
+            <div className="card-title">
+              <h4>{dest.location}</h4>
+            </div>
+          </div>)
+        })}
+
+        <div className="image6">
+          <img src={bgGradient} className="images" alt="destination image" />
+          <div className="destination-banner">
+            <div className="destination-banner-content">
+              <YellowBatch text="Get 20% Off" />
+              <h2>Of Our All Destination</h2>
+              <Link to="/destination" className="primary-button">View All Destination</Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </HomeDestinationsWrapper>
   )
 }
@@ -74,10 +74,10 @@ flex-direction: column;
 align-items: center;
 gap:2rem;
 
-    h1 {
+    h2 {
         color: var(--title-color);
     font-family: var(--font-rubik);
-    font-size: 48px;
+    font-size: 1rem;
     font-weight: 600;
     line-height: 1.1;
     margin-bottom: 0

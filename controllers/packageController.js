@@ -63,6 +63,15 @@ const packages = await Package.find({})
   res.status(StatusCodes.OK).json({ packages });
 }
 
+export const getPopularPackages = async (req,res)=>{
+ // Find the top 3 popular packages based on numberOfBookings
+        const popularPackages = await Package.find({})
+            .sort({ numberOfBookings: -1 }) // Sort in descending order of numberOfBookings
+            .limit(3); // Limit the result to 3 packages
+
+  res.status(StatusCodes.OK).json({ popularPackages });
+}
+
 export const getSinglePackage = async (req,res)=>{
 const {id} = req.params;
 const packageInfo = await Package.findOne({_id:id})

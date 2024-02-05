@@ -11,6 +11,21 @@ const PackageCard = ({
     imgUrl,
     id, availability
 }) => {
+    const getColor = (availability) => {
+        switch (availability) {
+            case 'limited':
+                return 'green';
+            case 'available':
+                return 'green';
+            case 'sold out':
+                return 'black';
+            default:
+                return 'black';
+        }
+    };
+
+    // Get the color based on the availability text
+    const color = getColor(availability);
 
     return (
         <PackageCardWrapper>
@@ -33,7 +48,9 @@ const PackageCard = ({
                 <div className="package-card-content">
                     <div className="card-content-top">
                         <h5><Link to={`/packages/${id}`} >{packageTitle}</Link></h5>
-                        <h5 className="availability">{availability} </h5>
+                        <h5 className="availability" style={{ color }}>
+                            {availability}
+                        </h5>
                     </div>
                     <div className="card-content-bottom">
                         <div className="price-area">
@@ -84,7 +101,8 @@ const PackageCardWrapper = styled.div`
     position: relative;
     overflow: hidden;
     display: block;
-    border-radius: 10px
+    border-radius: 10px;
+    
 }
 .package-card .package-card-content .card-content-top {
     padding-top: 20px;  

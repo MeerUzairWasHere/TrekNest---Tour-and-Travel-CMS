@@ -17,12 +17,11 @@ export const loader = async ({ params }) => {
     }
 };
 
-export const action = async ({ request }) => {
+export const action = async ({ request,params }) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
-    console.log(data)
     try {
-        await customFetch.post("/booking/admin", data);
+        await customFetch.patch(`/booking/admin/${params.id}`, data);
         toast.success("Booking updated successfully!");
         return redirect("/admin-dashboard/manage-bookings");
     } catch (error) {
@@ -41,7 +40,7 @@ const EditBookingPage = () => {
             <div className="container">
                 <div className="card">
                     <Form method="post" className="form">
-
+                      
                         <input
                             type="text"
                             name="packageId"
