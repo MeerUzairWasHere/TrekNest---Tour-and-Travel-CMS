@@ -4,7 +4,6 @@ import SanistaText from "../SharedComponents/SanistaText"
 import { useState } from "react"
 import mission from '../../assets/images/Mission.svg'
 import customer from '../../assets/images/Customer.svg'
-import { Link } from "react-router-dom"
 const HomeAboutUs = () => {
   const [tabs, setTabs] = useState(true)
   return (
@@ -14,14 +13,14 @@ const HomeAboutUs = () => {
           <div className="sanista-container">
             <SanistaText text="About Us" />
           </div>
-          <h1>Let’s know about our journey For Plane to Paradise.</h1>
+          <h1>Let’s know about our journey For TrekNest Travels - </h1>
           <div className="about-us-tabs">
             <div className="tabs-trigger">
               <button className={tabs ? "active-tabs" : ""} onClick={() => setTabs(!tabs)}><img src={mission} alt="mission svg" /> Mission & Vision</button>
               <button className={tabs ? "" : "active-tabs"} onClick={() => setTabs(!tabs)}><img src={customer} alt="customer svg" /> Focus On Customer</button>
             </div>
             <div className="tabs-content">
-              {tabs ? <p>At Plane to Paradise Tour and Travel, we aspire to redefine the travel experience by offering unparalleled service, personalized attention, and unforgettable journeys. Our vision is to emerge as the foremost provider of exceptional travel experiences, where every voyage is an adventure, each destination is a dream fulfilled, and every customer is embraced as a cherished member of our family.</p> : <p>At Plane to Paradise Tour and Travel, our unwavering commitment is to our customers. We prioritize their needs, preferences, and satisfaction above all else. Our focus on customer-centricity drives every aspect of our operations, ensuring that each traveler receives the highest standard of service, attention to detail, and support throughout their journey. From personalized itinerary planning to round-the-clock assistance, we are dedicated to exceeding expectations and creating memorable moments that last a lifetime.</p>}
+              {tabs ? <p> At TrekNest Travels, we aspire to redefine the travel experience by offering unparalleled service, personalized attention, and unforgettable journeys. Our vision is to emerge as the foremost provider of exceptional travel experiences, where every voyage is an adventure, each destination is a dream fulfilled, and every customer is embraced as a cherished member of our family.</p> : <p> At TrekNest Travels, our unwavering commitment is to our customers. We prioritize their needs, preferences, and satisfaction above all else. Our focus on customer-centricity drives every aspect of our operations, ensuring that each traveler receives the highest standard of service, attention to detail, and support throughout their journey. From personalized itinerary planning to round-the-clock assistance, we are dedicated to exceeding expectations and creating memorable moments that last a lifetime.</p>}
             </div>
           </div>
         </div>

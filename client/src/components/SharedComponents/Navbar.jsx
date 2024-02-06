@@ -72,7 +72,7 @@ const Wrapper = styled.nav`
   background-color: var(--white-color);
   box-shadow: 0 1px 10px #00000020;
   height: 90px;
-  padding: 0 3rem;
+  padding: 3rem;
   .main-logo{
 font-size: 2rem;
 color: black;
