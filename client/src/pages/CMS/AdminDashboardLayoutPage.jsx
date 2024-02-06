@@ -12,10 +12,16 @@ const AdminDashboardLayoutPage = () => {
       <nav>
         <ul>
           <li>
-            <NavLink end to="/admin-dashboard/manage-packages">All Packages</NavLink>
+            <NavLink end to="/admin-dashboard">Dashboard</NavLink>
           </li>
           <li>
-            <NavLink to="/admin-dashboard/manage-packages/add">Add Package</NavLink>
+            <NavLink to="/admin-dashboard/manage-users">Manage Users</NavLink>
+          </li>
+          <li>
+            <NavLink to="/admin-dashboard/manage-packages">Manage packages</NavLink>
+          </li>
+          <li>
+            <NavLink to="/admin-dashboard/manage-bookings">Manage Bookings</NavLink>
           </li>
         </ul>
       </nav>
@@ -39,7 +45,7 @@ nav {
   background-color: #333; /* Background color of the navigation bar */
   padding: 10px 20px; /* Padding around the navigation links */
   text-align: center;
-  margin-bottom: 2rem;
+  border-bottom: 1px solid white;
 }
 
 ul {

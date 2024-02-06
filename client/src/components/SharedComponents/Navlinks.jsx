@@ -8,11 +8,11 @@ const Navlinks = ({ toggle }) => {
   // Filter links based on user's role and authentication status
   const filteredLinks = links.filter(link => {
     if (!user) {
-      return link.text !== "Logout" && link.text !== "Admin Dashboard" && link.text !== "My Bookings" && link.text !== "Manage Users" && link.text !== "Manage Bookings" && link.text !== "Manage Packages";
+      return link.text !== "Logout" && link.text !== "Admin Dashboard" && link.text !== "My Bookings" && link.text
     } else if (user.role === "admin") {
       return link.text !== "Login" && link.text !== "Register"
     } else if (user.role === "user") {
-      return link.text !== "Login" && link.text !== "Register" && link.text !== "Admin Dashboard" && link.text !== "Manage Users" && link.text !== "Manage Bookings" && link.text !== "Manage Packages";
+      return link.text !== "Login" && link.text !== "Register" && link.text !== "Admin Dashboard" && link.text
     }
     return true;
   });
@@ -23,7 +23,7 @@ const Navlinks = ({ toggle }) => {
         const { text, path } = link;
         return (
           <li key={text}>
-            <NavLink to={path} end onClick={toggle}>
+            <NavLink to={path} onClick={toggle}>
               {text}
             </NavLink>
           </li>

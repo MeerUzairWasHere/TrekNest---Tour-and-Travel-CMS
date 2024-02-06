@@ -6,17 +6,17 @@ const ManagePackagesPage = () => {
 
   return (
     <Wrapper>
-      {/* <nav>
+      <nav>
         <ul>
           <li>
             <NavLink end to="/admin-dashboard/manage-packages">All Packages</NavLink>
           </li>
           <li>
-            <NavLink   to="/admin-dashboard/manage-packages/add">Add Package</NavLink>
+            <NavLink to="/admin-dashboard/manage-packages/add">Add Package</NavLink>
           </li>
-          
+
         </ul>
-      </nav> */}
+      </nav>
       <div className="container">
         <Outlet />
       </div>

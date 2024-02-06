@@ -15,20 +15,9 @@ export const links = [
     text: "Register",
     path: "/register",
   },
-   {
+  {
     text: "Admin Dashboard",
     path: "/admin-dashboard",
   },
-   {
-    text: "Manage Users",
-    path: "/admin-dashboard/manage-users",
-  },
-  {
-   text: "Manage Packages",
-   path: "/admin-dashboard/manage-packages",
- },
-   {
-    text: "Manage Bookings",
-    path: "/admin-dashboard/manage-bookings",
-  },
+
 ];
