@@ -36,7 +36,7 @@ router
 
 router
   .route("/admin/:id")
-  .delete(authenticateUser,authorizePermissions("admin"),validateUpdateUserInput, deleteUser);
+  .delete(authenticateUser,authorizePermissions("admin"), deleteUser);
  
   
 
