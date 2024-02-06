@@ -13,7 +13,7 @@ const HomeAboutUs = () => {
           <div className="sanista-container">
             <SanistaText text="About Us" />
           </div>
-          <h1>Let’s know about our journey For TrekNest Travels - </h1>
+          <h1>Let’s know about our journey For TrekNest Travels</h1>
           <div className="about-us-tabs">
             <div className="tabs-trigger">
               <button className={tabs ? "active-tabs" : ""} onClick={() => setTabs(!tabs)}><img src={mission} alt="mission svg" /> Mission & Vision</button>
