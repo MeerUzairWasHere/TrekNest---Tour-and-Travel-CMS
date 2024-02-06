@@ -6,11 +6,17 @@ import PackageInfoPage from "./pages/PackageInfoPage";
 import Layout from "./pages/Layout";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ProfilePageLayout from "./pages/ProfilePageLayout";
+import UpdateProfilePage from "./pages/UpdateProfilePage";
 import MyBookingPage from "./pages/MyBookingPage";
+import ProfilePage from "./pages/ProfilePage";
+import UpdatePasswordPage from "./pages/UpdatePasswordPage";
+import ErrorPage from "./pages/ErrorPage";
+
 import ShowAllPackagesPage from "./pages/CMS/ShowAllPackagesPage";
 import AddNewPackagePage from "./pages/CMS/AddNewPackagePage";
 import EditPackagePage from "./pages/CMS/EditPackagePage";
-import ErrorPage from "./pages/ErrorPage";
+import EditBookingPage from "./pages/CMS/EditBookingPage";
 
 import { AdminDashboardLayoutPage, AdminDashboardPage, ManageBookingsPage, ManagePackagesPage, ManageUsersPage } from "./pages/CMS";
 
@@ -35,6 +41,8 @@ import { loader as LayoutLoader } from "./pages/Layout";
 import { loader as HomeLoader } from "./pages/Home";
 import { loader as MyBookingsLoader } from "./pages/MyBookingPage";
 import { loader as PackageInfoLoader } from "./pages/PackageInfoPage";
+import { loader as ProfilePageLoader } from "./pages/ProfilePage";
+import { loader as UpdateProfileLoader } from "./pages/UpdateProfilePage";
 
 
 
@@ -42,7 +50,11 @@ import { loader as PackageInfoLoader } from "./pages/PackageInfoPage";
 import { action as LogoutAction } from "./pages/Logout";
 import { action as LoginAction } from "./pages/LoginPage";
 import { action as RegisterAction } from "./pages/RegisterPage";
-import EditBookingPage from "./pages/CMS/EditBookingPage";
+import { action as UpdateUserAction } from "./pages/UpdateProfilePage";
+import { action as UpdatePasswordAction } from "./pages/UpdatePasswordPage";
+import VerifyPage from "./pages/VerifyPage";
+import AccountVerified from "./pages/AccountVerified";
+import AccountNotVerified from "./pages/AccountNotVerified";
 
 
 
@@ -64,6 +76,10 @@ const router = createBrowserRouter([
       loader: PackageInfoLoader,
     },
     {
+      path: "/user/verify-email?",
+      element: <VerifyPage />
+    },
+    {
       path: "/login",
       element: <LoginPage />,
       action: LoginAction
@@ -76,6 +92,24 @@ const router = createBrowserRouter([
       element: <MyBookingPage />,
       errorElement: <ErrorPage />,
       loader: MyBookingsLoader,
+    }, {
+      path: "/profile",
+      element: <ProfilePageLayout />, //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+      children: [{
+        index: true,
+        element: <ProfilePage />,
+        loader: ProfilePageLoader,
+      }, {
+        path: "update-details",
+        element: <UpdateProfilePage />,
+        loader: UpdateProfileLoader,
+        action: UpdateUserAction
+      },
+      {
+        path: "update-password",
+        element: <UpdatePasswordPage />,
+        action: UpdatePasswordAction
+      }]
     },
     { path: "/logout", action: LogoutAction },
     {
@@ -134,9 +168,15 @@ const router = createBrowserRouter([
 
       ]
     },]
-
   },
-
+  {
+    path: "/account-verified",
+    element: <AccountVerified />
+  },
+  {
+    path: "/account-not-verified",
+    element: <AccountNotVerified />
+  },
 ]);
 
 const App = () => {

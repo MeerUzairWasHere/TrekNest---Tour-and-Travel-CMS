@@ -16,8 +16,13 @@ export const links = [
     path: "/register",
   },
   {
+    text: "My Profile",
+    path: "/profile",
+  },
+  {
     text: "Admin Dashboard",
     path: "/admin-dashboard",
   },
+
 
 ];

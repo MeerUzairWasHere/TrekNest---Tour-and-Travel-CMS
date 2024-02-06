@@ -9,6 +9,7 @@ import {
 } from "../utils/index.js";
 
 export const showCurrentUser = async (req, res) => {
+ 
   res.status(StatusCodes.OK).json({ user: req.user });
 };
 
@@ -23,8 +24,8 @@ export const updateUser = async (req, res) => {
 
   const user = await User.findOne({ _id: req.user.userId });
 
-  user.email = email;
-  user.name = name;
+    user.name = name;
+    user.email = email;
     user.phoneNumber = phoneNumber,
     user.street = street,
     user.postalCode = postalCode,
@@ -60,10 +61,12 @@ export const getAllUsers = async (req,res)=>{
   const users = await User.find({ role: "user" }).select("name email phoneNumber street postalCode city state country ") 
   res.status(StatusCodes.OK).json({ users });
 }
+
 export const getSingleUserDetail = async (req,res)=>{
-  const user = await User.findOne({ role: "user",_id:req.params.id });
+  const user = await User.findOne({_id:req?.user?.userId }).select("name email phoneNumber street postalCode city state country ")
   res.status(StatusCodes.OK).json({ user });
 }
+
 export const deleteUser = async (req,res)=>{
    await User.findOneAndDelete({ role: "user",_id:req.params.id });
   res.status(StatusCodes.OK).json({ msg:`user deleted successfully!` });

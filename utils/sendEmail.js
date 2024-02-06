@@ -7,7 +7,7 @@ export const sendEmail = async ({ to, subject, html }) => {
   const transporter = createTransport(config);
 
   return transporter.sendMail({
-    from: '"Mir Uzair" <meer.uxair007@gmail.com>', // sender address
+    from: '"Mir Uzair from TrekNest" <squadtechinnovations@gmail.com>', // sender address
     to,
     subject,
     html,

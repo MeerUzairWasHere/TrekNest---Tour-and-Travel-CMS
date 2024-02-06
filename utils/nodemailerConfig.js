@@ -1,10 +1,10 @@
 const config = {
-  host: 'smtp.ethereal.email',
+  host: "smtp-relay.brevo.com",
   port: 587,
   auth: {
-      user: 'nya64@ethereal.email',
-      pass: 'veDzJ6FabD1MmKmFxg'
-  }
+    user: "meer.uxair007@gmail.com",
+    pass: "BgWHsOSMf1pJN8C4",
+  },
 };
 
 export default config;

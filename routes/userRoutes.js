@@ -31,10 +31,12 @@ router
 router
   .route("/admin")
   .get(authenticateUser,authorizePermissions("admin"), getAllUsers);
+  
+  router.route("/admin/getUserDetail").get(authenticateUser, getSingleUserDetail)
+
 router
   .route("/admin/:id")
-  .get(authenticateUser,authorizePermissions("admin"), getSingleUserDetail)
-  .delete(authenticateUser,authorizePermissions("admin"), deleteUser);
+  .delete(authenticateUser,authorizePermissions("admin"),validateUpdateUserInput, deleteUser);
  
   
 

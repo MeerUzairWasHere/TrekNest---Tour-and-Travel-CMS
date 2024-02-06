@@ -62,24 +62,38 @@ export const validateLoginInput = withValidationErrors([
   body("password").notEmpty().withMessage("password is required"),
 ]);
 
+ 
 export const validateUpdateUserInput = withValidationErrors([
-  body("name").notEmpty().withMessage("name is required"),
+  body("name")
+    .notEmpty().withMessage("Name is required")
+    .isLength({ min: 3 }).withMessage("Name must be at least 3 characters long"),
   body("email")
-    .notEmpty()
-    .withMessage("email is required")
-    .isEmail()
-    .withMessage("invalid email format")
+    .notEmpty().withMessage("Email is required")
+    .isEmail().withMessage("Invalid email format")
     .custom(async (email, { req }) => {
       const user = await User.findOne({ email });
       if (user && user._id.toString() !== req.user.userId) {
-        throw new BadRequestError("email already exists");
+        throw new BadRequestError("Email already exists");
       }
-    }),body("phoneNumber").notEmpty().withMessage("phoneNumber is required"),
-  body("street").notEmpty().withMessage("street is required"),
-  body("postalCode").notEmpty().withMessage("postalCode is required"),
-  body("city").notEmpty().withMessage("city is required"),
-  body("state").notEmpty().withMessage("state is required"),
-  body("country").notEmpty().withMessage("country is required"),
+    }),
+  body("phoneNumber")
+    .notEmpty().withMessage("Phone number is required")
+    .isLength({ min: 11,max:15 }).withMessage("Phone number must be at least 10 characters long"),
+  body("street")
+    .notEmpty().withMessage("Street is required")
+    .isLength({ min: 3 }).withMessage("Street must be at least 3 characters long"),
+  body("postalCode")
+    .notEmpty().withMessage("Postal code is required")
+    .isLength({ min: 6 }).withMessage("Postal code must be at least 6 characters long"),
+  body("city")
+    .notEmpty().withMessage("City is required")
+    .isLength({ min: 3 }).withMessage("City must be at least 3 characters long"),
+  body("state")
+    .notEmpty().withMessage("State is required")
+    .isLength({ min: 3 }).withMessage("State must be at least 3 characters long"),
+  body("country")
+    .notEmpty().withMessage("Country is required")
+    .isLength({ min: 3 }).withMessage("Country must be at least 3 characters long")
 ]);
 
 export const validateUpdatePasswordInput = withValidationErrors([

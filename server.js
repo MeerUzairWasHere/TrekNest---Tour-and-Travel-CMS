@@ -51,6 +51,22 @@ app.use(express.static(path.resolve(__dirname, "./client/dist")));
 
 //security packages
 app.use(helmet());
+app.use(helmet({ crossOriginEmbedderPolicy: false, originAgentCluster: true }));
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+      "img-src": [
+        "'self'",
+        "data:",
+        "https://meeruzairwashere-portfolio.onrender.com/",
+        "https://res.cloudinary.com/",
+        "https://www.google-analytics.com",
+      ],
+    },
+    reportOnly: false,
+  })
+);
 app.use(mongoSanitize());
 
 cloudinary.config({
@@ -71,10 +87,10 @@ app.use("/api/v1/dashboard", dashboardRouter);
 
 
 
-// app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "./client/dist", "index.html")); last
-//   });
-  
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
+});
+
   
   //handling errors
   app.use(notFoundMiddleware);

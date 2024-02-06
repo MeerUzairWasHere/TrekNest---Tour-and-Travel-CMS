@@ -8,7 +8,7 @@ const Navlinks = ({ toggle }) => {
   // Filter links based on user's role and authentication status
   const filteredLinks = links.filter(link => {
     if (!user) {
-      return link.text !== "Logout" && link.text !== "Admin Dashboard" && link.text !== "My Bookings" && link.text
+      return link.text !== "Logout" && link.text !== "Admin Dashboard" && link.text !== "My Bookings" && link.text && link.text !== "My Profile"
     } else if (user.role === "admin") {
       return link.text !== "Login" && link.text !== "Register"
     } else if (user.role === "user") {
