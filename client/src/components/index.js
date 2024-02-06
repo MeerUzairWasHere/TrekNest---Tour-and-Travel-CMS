@@ -1,9 +1,7 @@
-export { default as HomeSlider } from "./HomeComponents/HomeSlider";
 export { default as HomeAboutUs } from "./HomeComponents/HomeAboutUs";
 export { default as HomeDestinations } from "./HomeComponents/HomeDestinations";
 export { default as HomePackages } from "./HomeComponents/HomePackages";
 export { default as PopularPackages } from "./HomeComponents/PopularPackages";
-export { default as HomeActivities } from "./HomeComponents/HomeActivities";
 export { default as Navbar } from "./SharedComponents/Navbar";
 export { default as Footer} from "./SharedComponents/Footer"
 export { default as Header } from "./SharedComponents/Header";

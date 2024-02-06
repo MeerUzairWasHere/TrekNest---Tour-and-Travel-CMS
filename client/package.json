@@ -10,8 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@splidejs/react-splide": "^0.7.12",
-    "animate.css": "^4.1.1",
     "axios": "^1.6.7",
     "html-react-parser": "^5.1.1",
     "lucide-react": "^0.321.0",
@@ -21,8 +19,7 @@
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.21.3",
     "react-toastify": "^10.0.4",
-    "styled-components": "^6.1.8",
-    "swiper": "^11.0.5"
+    "styled-components": "^6.1.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

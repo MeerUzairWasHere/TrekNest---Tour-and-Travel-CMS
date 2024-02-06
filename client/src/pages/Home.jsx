@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { HomeSlider, HomeAboutUs, HomeDestinations, PopularPackages, HomePackages } from "../components"
+import { HomeAboutUs, HomeDestinations, PopularPackages, HomePackages } from "../components"
 import customFetch from "../utils/customFetch";
 import { useLoaderData } from "react-router-dom";
 
@@ -19,17 +19,12 @@ export const loader = async () => {
 const Home = () => {
   const { packages, popularPackages } = useLoaderData()
   return (
-    <>
-      <section className="slider-container">
-        <HomeSlider />
-      </section>
-      <section className="container">
-        <HomeAboutUs />
-        <HomePackages packages={packages} />
-        <HomeDestinations />
-        <PopularPackages popularPackages={popularPackages} />
-      </section>
-    </>
+    <section className="container">
+      <HomeAboutUs />
+      <HomePackages packages={packages} />
+      <HomeDestinations />
+      <PopularPackages popularPackages={popularPackages} />
+    </section>
   )
 }
 export default Home

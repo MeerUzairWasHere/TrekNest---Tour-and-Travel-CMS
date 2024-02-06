@@ -1,12 +1,12 @@
-import {  NavLink, Outlet,Navigate} from "react-router-dom"
+import { NavLink, Outlet, Navigate } from "react-router-dom"
 import styled from "styled-components"
- 
+
 
 const ManagePackagesPage = () => {
-  
+
   return (
     <Wrapper>
-      <nav>
+      {/* <nav>
         <ul>
           <li>
             <NavLink end to="/admin-dashboard/manage-packages">All Packages</NavLink>
@@ -16,7 +16,7 @@ const ManagePackagesPage = () => {
           </li>
           
         </ul>
-      </nav>
+      </nav> */}
       <div className="container">
         <Outlet />
       </div>
