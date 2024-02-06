@@ -1,7 +1,6 @@
-![favicon](https://github.com/MeerUzairWasHere/TrekNest---Tour-and-Travel-CMS/assets/121447358/9908e08f-7656-446a-a4b7-36f826c158bb)<br/>
 <p align="center">
   <a href="https://github.com/MeerUzairWasHere/TrekNest---Tour-and-Travel-CMS">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="client/src/assets/images/favicon.svg" alt="Logo" width="80" height="80">
   </a>
 
 
@@ -41,7 +40,14 @@
 
 ## About The Project
 
-![Screen Shot]([images/screenshot.png](https://github.com/MeerUzairWasHere/TrekNest---Tour-and-Travel-CMS/assets/121447358/69111b51-bae8-4c83-89b4-119c050b23bc))
+<img src="client/src/assets/images/mobile (1).png" alt="Logo" >
+
+
+
+
+
+
+ 
 
 **Project Name: TrekNest Travels**
 
