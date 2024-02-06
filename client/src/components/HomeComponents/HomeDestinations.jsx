@@ -57,7 +57,7 @@ const HomeDestinations = () => {
             <div className="destination-banner-content">
               <YellowBatch text="Get 20% Off" />
               <h2>Of Our All Destination</h2>
-              <Link to="/destination" className="primary-button">View All Destination</Link>
+              <Link className="primary-button">View All Destination</Link>
             </div>
           </div>
         </div>
