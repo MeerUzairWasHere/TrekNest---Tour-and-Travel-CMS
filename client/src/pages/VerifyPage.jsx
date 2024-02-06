@@ -30,7 +30,7 @@ const VerifyPage = () => {
 
     return (
         <Wrapper className='page'>
-            <h2>Account Confirmed</h2>
+            <h2>Account Confirmed :D</h2>
             <Link to='/login' className='btn'>
                 Please login
             </Link>

@@ -1,5 +1,5 @@
 import styled from "styled-components"
- 
+
 import { Link } from "react-router-dom";
 import Navlinks from "./Navlinks";
 
@@ -19,11 +19,11 @@ const Footer = () => {
     <Wrapper>
       <div className="container">
         <div className="bio">
-     <Link to="/" className="main-logo">
-        TrekNest
-      </Link>
-          
-         
+          <Link to="/" className="main-logo">
+            TrekNest
+          </Link>
+
+
         </div>
         <div className="links">
           <h5>Quick Links</h5>
@@ -34,9 +34,9 @@ const Footer = () => {
           <div className="adressItem">
             <h5>
               <FaPhoneVolume />
-             For Further Inquiry
+              For Further Inquiry
             </h5>
-                     <a href="tel:+918899080590">+91 8899080590</a>
+            <a href="tel:+918899080590">+91 8899080590</a>
 
           </div>
           <div className="adressItem">
@@ -60,20 +60,21 @@ const Footer = () => {
             Engage with us for updates, stories, offers, and inspiration.
           </p>
           <div className="icons">
-            <a target="_blank" href="https://www.instagram.com/squadtechinnovations?igsh=NTc4MTIwNjQ2YQ=="><FaInstagram/></a>
-        <a target="_blank" href="https://wa.me/+918899080590"><FaWhatsapp/></a>
+            <a target="_blank" href="https://www.instagram.com/squadtechinnovations?igsh=NTc4MTIwNjQ2YQ=="><FaInstagram /></a>
+            <a target="_blank" href="https://wa.me/+918899080590"><FaWhatsapp /></a>
           </div>
         </div>
       </div>
       <div className="line"></div>
       <p className="sub-footer">
-        © Copyright {new Date().getFullYear()} <a className="p-to-p" href="/">Trek Nest</a> | Designed & Developed By 
-        <a className="squadteck"  href="mailto:squadtechinnovations@gmail.com"> SquadTech Innovations</a>
+        © Copyright {new Date().getFullYear()} <a className="p-to-p" href="/">Trek Nest</a> | Designed & Developed By
+        <a className="squadteck" href="mailto:squadtechinnovations@gmail.com"> SquadTech Innovations</a>
       </p>
     </Wrapper>
   );
 }
 const Wrapper = styled.footer`
+margin-top: auto;
   background-image: linear-gradient(180deg, #1d231f 0%, #1d231f 100%);
   color: var(--white-color);
   list-style: none;

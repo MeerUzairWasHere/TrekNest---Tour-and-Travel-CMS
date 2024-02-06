@@ -176,7 +176,7 @@ padding: .5rem 1rem;
   /* -----------------------MEDIA QUERIES--------------------------- */
 
   @media only screen and (max-width: 768px) {
-    padding: 0 1rem;
+    padding: 1rem;
     justify-content: space-between;
     .hide {
       display: none;

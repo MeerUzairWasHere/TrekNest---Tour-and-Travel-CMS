@@ -1,8 +1,8 @@
 import styled from "styled-components"
-import { useMyContext } from "./Layout"
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
 import { useLoaderData } from "react-router-dom";
+import logo from '../assets/images/favicon.svg'
 
 
 export const loader = async () => {
@@ -33,7 +33,7 @@ const ProfilePage = () => {
     <Wrapper className="">
       <div className="profile-header">
         <div className="profile-picture">
-          <img src="https://via.placeholder.com/150" alt="Profile Picture" />
+          <img src={logo} alt="Profile Picture" />
         </div>
         <div className="profile-name">{name}</div>
         <div className="profile-bio">User Details</div>
@@ -65,7 +65,9 @@ const Wrapper = styled.div`
       height: 150px;
       border-radius: 50%;
       overflow: hidden;
+      
       margin-bottom: 10px;
+      display: flex;
     }
 
     .profile-picture img {

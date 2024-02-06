@@ -21,10 +21,11 @@ export const action = async ({ request }) => {
 const UpdatePasswordPage = () => {
     return (
         <div className="card">
+            <h2>Change password</h2>
             <Form method="post" className="form">
                 <input
                     type="password"
-                    placeholder="Type your new password"
+                    placeholder="Type your old password"
                     name="oldPassword"
                     autoComplete="true"
                     id="oldPassword"

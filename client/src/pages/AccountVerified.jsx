@@ -7,8 +7,7 @@ const AccountVerified = () => {
         <Wrapper>
 
             <h3>Account Verified :D</h3>
-            <Link to='/login'>Please login</Link>
-
+            <Link to='/' >Please login</Link>
         </Wrapper>
     );
 }
@@ -23,7 +22,6 @@ align-items: center;
 height: 100vh;
 gap: 1rem;
 color: green;
-
 
  
 `
