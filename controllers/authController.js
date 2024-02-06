@@ -42,7 +42,7 @@ export const register = async (req, res) => {
     
   });
 
-  const origin = "http://localhost:5173";
+  const origin = "https://trek-nest-travels.onrender.com";
 
   // const newOrigin = 'https://react-node-user-workflow-front-end.netlify.app';
 

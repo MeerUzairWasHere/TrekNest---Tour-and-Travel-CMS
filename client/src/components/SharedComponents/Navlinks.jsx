@@ -1,5 +1,5 @@
 import { Form, NavLink } from "react-router-dom";
-import { links } from "../../utils/Links";
+import { links } from "../../utils/links"
 import { useMyContext } from "../../pages/Layout";
 
 const Navlinks = ({ toggle }) => {
