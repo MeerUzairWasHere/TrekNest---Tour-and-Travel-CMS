@@ -8,7 +8,8 @@ import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
-
+import axios from 'axios'
+import cron from 'node-cron'
 
 // public
 import { dirname } from "path";
@@ -37,6 +38,7 @@ import connectDB from "./db/connect.js";
 //error handlers
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
+import { StatusCodes } from "http-status-codes";
 
 
 //applying thirdparty middlewares
@@ -75,7 +77,9 @@ cloudinary.config({
   api_secret: process.env.CLOUD_API_SECRET,
 });
 
-
+app.get("/api/v1/health", (req, res) => {
+  res.status(StatusCodes.OK).json({ msg: "Server is running!" });
+});
 // public routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
@@ -110,4 +114,15 @@ app.get("*", (req, res) => {
   };
   
   start();
-  
+
+// Schedule health check
+cron.schedule("*/14 * * * *", async () => {
+  try {
+    const response = await axios.get(
+      `https://trek-nest-travels.onrender.com/api/v1/health`
+    );
+    console.log(`Health check successful: ${response.data.msg}`);
+  } catch (error) {
+    console.error(`Health check failed: ${error.message}`);
+  }
+});
