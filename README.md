@@ -120,18 +120,22 @@ To set up TrekNest Travels locally, follow these simple steps:
    JWT_SECRET=your_jwt_secret
    JWT_EXPIRES_IN=7d
    COOKIE_SECRET=your_cookie_secret
-   CLOUD_NAME=your_cloud_name
-   CLOUD_API_KEY=your_cloud_api_key
-   CLOUD_API_SECRET=your_cloud_api_secret
+   CLOUD_NAME=your_cloudinary_cloud_name
+   CLOUD_API_KEY=your_cloudinary_cloud_api_key
+   CLOUD_API_SECRET=your_cloudinary_cloud_api_secret
    ```
 
    Ensure you replace `your_jwt_secret`, `your_cookie_secret`, `your_cloud_name`, `your_cloud_api_key`, and `your_cloud_api_secret` with your own values.
 
- 
+## NOTE:-
+
+<h4>If you are giving some specific PORT number like `PORT = 3000`, you have to change the port in proxy under `client folder` in `vite.config.js` file. </h4>
 
 6. **Access the Application**:
-   Open your web browser and navigate to `http://localhost:5173/` to access the TrekNest Travels application locally.
+ 
 
+--- 
+  Open your web browser and navigate to `http://localhost:5173/` to access the TrekNest Travels application locally.
 With these steps completed, you should now have a local instance of TrekNest Travels up and running on your machine. Happy exploring!
 
 ## Usage
