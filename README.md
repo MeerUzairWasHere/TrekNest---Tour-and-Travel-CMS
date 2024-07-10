@@ -207,4 +207,4 @@ Distributed under the MIT License. See [LICENSE](https://github.com/MeerUzairWas
 
 ## Authors
 
-* **Mir Uzair** - ** - [Mir Uzair](https://meeruzairwashere-portfolio.onrender.com) - * *
+[Mir Uzair](https://meeruzairwashere-portfolio.onrender.com)
