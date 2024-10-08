@@ -131,6 +131,8 @@ To set up TrekNest Travels locally, follow these simple steps:
 
 <h4>If you are giving some specific PORT number like `PORT = 3000`, you have to change the port in proxy under `client folder` in `vite.config.js` file. </h4>
 
+<h4>First User who signup will get automatically, admin role.</h4>
+
 6. **Access the Application**:
  
 
