@@ -1,7 +1,7 @@
 import { Form, Navigate, redirect } from "react-router-dom";
 import styled from "styled-components";
 import customFetch from "../utils/customFetch";
-import { toast } from 'react-toastify'
+import { toast } from "react-toastify";
 import { SubmitButton } from "../components";
 import { useMyContext } from "./Layout";
 
@@ -10,7 +10,7 @@ export const action = async ({ request }) => {
   const data = Object.fromEntries(formData);
   try {
     await customFetch.post("/auth/register", data);
-    toast.success("Please verify your email!");
+    toast.success("Registration successful!");
     return redirect("/");
   } catch (error) {
     toast.error(error?.response?.data?.msg);
@@ -18,9 +18,8 @@ export const action = async ({ request }) => {
   }
 };
 
-
 const RegisterPage = () => {
-  const { user } = useMyContext()
+  const { user } = useMyContext();
   return (
     <Wrapper>
       {user && <Navigate to="/" replace />}
@@ -102,16 +101,9 @@ const RegisterPage = () => {
           </Form>
         </div>
       </div>
-
     </Wrapper>
-  )
-}
-export default RegisterPage
+  );
+};
+export default RegisterPage;
 
-const Wrapper = styled.div`
- 
-
-
-
- 
-`;
+const Wrapper = styled.div``;
